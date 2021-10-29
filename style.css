@@ -53,7 +53,7 @@ header {
 
 header .list-items {
   display: flex;
-  max-width: 16.25rem;
+  max-width: 17.25rem;
   width: 100%;
   justify-content: space-between;
 }
@@ -61,6 +61,14 @@ header .list-items {
 .list-items li a {
   color: #fff;
   align-items: center;
+  display: flex;
+}
+.list-items .login {
+color: #FFD278;
+}
+.list-items .login:hover {
+  color: #fff;
+  text-rendering: #ffffff;
 }
 
 header .menu {
