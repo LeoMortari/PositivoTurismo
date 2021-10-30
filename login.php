@@ -14,15 +14,16 @@ if (isset($_POST['btn-entrar'])) {
   if (empty($login) or empty($senha)) {
     $erros[] = "<li> O campo Login/Senha não pode estar vazio </li>";
   } else {
-    $sql = "SELECT usuario FROM cliente WHERE usuario = '$login'";
+    $sql = "SELECT usuario FROM cliente WHERE email = '$login'";
     $resultado = mysqli_query($connect, $sql);
 
     if (mysqli_num_rows($resultado) > 0) {
       $senha = md5($senha);
-      $sql = "SELECT * FROM cliente WHERE usuario = '$login' AND senha = '$senha'";
+      $sql = "SELECT * FROM cliente WHERE email = '$login' AND senha = '$senha'";
       $resultado = mysqli_query($connect, $sql);
-      if (mysqli_num_rows($resultado)) {
+      if (mysqli_num_rows($resultado) == 1) {
         $dados = mysqli_fetch_array($resultado);
+        mysqli_close($connect);
         $_SESSION['logado'] = true;
         $_SESSION['id_usuario'] = $dados['id'];
         header('Location: home.php');
@@ -34,7 +35,6 @@ if (isset($_POST['btn-entrar'])) {
     }
   }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +53,9 @@ if (isset($_POST['btn-entrar'])) {
   <header>
     <div class="flex-container menu">
       <div>
-        <h1>PositivoTurismo</h1>
+        <a href="./index.php" style="text-decoration:none; color:white">
+          <h1>PositivoTurismo</h1>
+        </a>
       </div>
       <ul class="list-items">
         <li><a href="#quem-somos">Quem Somos</a></li>
@@ -65,7 +67,7 @@ if (isset($_POST['btn-entrar'])) {
 
   <section id="box-form">
     <div class="container-principal">
-      <form class="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" action="#">
+      <form class="form-edit" method="POST" action="#">
         <div class=topo-form>
           <h1>Entrar</h1>
           <img src="images/bagagem-de-viagem.svg">
