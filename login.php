@@ -14,24 +14,46 @@ if (isset($_POST['btn-entrar'])) {
   if (empty($login) or empty($senha)) {
     $erros[] = "<li> O campo Login/Senha não pode estar vazio </li>";
   } else {
-    $sql = "SELECT usuario FROM cliente WHERE email = '$login'";
-    $resultado = mysqli_query($connect, $sql);
-
-    if (mysqli_num_rows($resultado) > 0) {
-      $senha = md5($senha);
-      $sql = "SELECT * FROM cliente WHERE email = '$login' AND senha = '$senha'";
+    // Validar e-mail
+    if (strpos($login, '@')) {
+      $sql = "SELECT usuario FROM cliente WHERE email = '$login'";
       $resultado = mysqli_query($connect, $sql);
-      if (mysqli_num_rows($resultado) == 1) {
-        $dados = mysqli_fetch_array($resultado);
-        mysqli_close($connect);
-        $_SESSION['logado'] = true;
-        $_SESSION['id_usuario'] = $dados['id'];
-        header('Location: home.php');
+      if (mysqli_num_rows($resultado) > 0) {
+        $senha = md5($senha);
+        $sql = "SELECT * FROM cliente WHERE email = '$login' AND senha = '$senha'";
+        $resultado = mysqli_query($connect, $sql);
+        if (mysqli_num_rows($resultado) == 1) {
+          $dados = mysqli_fetch_array($resultado);
+          mysqli_close($connect);
+          $_SESSION['logado'] = true;
+          $_SESSION['id_usuario'] = $dados['id'];
+          header('Location: home.php');
+        } else {
+          $erros[] = "<li>Usuário e Senha não conferem</li>";
+        }
       } else {
-        $erros[] = "<li>Usuário e Senha não conferem</li>";
+        $erros[] = "<li>Email inexistente</li>";
       }
     } else {
-      $erros[] = "<li>Usuário inexistente</li>";
+      // Validar usuario
+      $sql = "SELECT usuario FROM cliente WHERE usuario = '$login'";
+      $resultado = mysqli_query($connect, $sql);
+      if (mysqli_num_rows($resultado) > 0) {
+        $senha = md5($senha);
+        $sql = "SELECT * FROM cliente WHERE usuario = '$login' AND senha = '$senha'";
+        $resultado = mysqli_query($connect, $sql);
+        if (mysqli_num_rows($resultado) == 1) {
+          $dados = mysqli_fetch_array($resultado);
+          mysqli_close($connect);
+          $_SESSION['logado'] = true;
+          $_SESSION['id_usuario'] = $dados['id'];
+          header('Location: home.php');
+        } else {
+          $erros[] = "<li>Usuário e Senha não conferem</li>";
+        }
+      } else {
+        $erros[] = "<li>Usuário inexistente</li>";
+      }
     }
   }
 }
@@ -72,7 +94,7 @@ if (isset($_POST['btn-entrar'])) {
           <h1>Entrar</h1>
           <img src="images/bagagem-de-viagem.svg">
         </div>
-        <label for="email">Usuario</label>
+        <label for="email">Usuario ou E-mail</label>
         <input type="text" name="login" value="">
         <label for="senha">Senha</label>
         <input type="password" name="senha">
@@ -80,15 +102,16 @@ if (isset($_POST['btn-entrar'])) {
           <button name="btn-entrar" type="submit" value="Entrar">
             <span>Entrar</span>
           </button>
-          <?php
-          if (!empty($erros)) {
-            foreach ($erros as $erro) {
-              echo $erro;
-            }
-          }
-          ?>
         </div>
+        <?php
+        if (!empty($erros)) {
+          foreach ($erros as $erro) {
+            echo $erro;
+          }
+        }
+        ?>
       </form>
+
     </div>
   </section>
 
