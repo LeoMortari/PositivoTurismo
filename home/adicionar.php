@@ -3,7 +3,6 @@
 include_once 'includes/header.php';
 ?>
 
-
 <div class="row">
     <div class="col s12 m6 push-m3">
         <h3 class="light">Novo Cliente</h3>
@@ -25,7 +24,7 @@ include_once 'includes/header.php';
                 <label for="uf">UF</label>
             </div>
             <div class="input-field col s12">
-                <input type="text" name="idade" id="idade">
+                <input type="date" name="idade" id="idade">
                 <label for="idade">Data de Nascimento</label>
             </div>
 
@@ -46,7 +45,6 @@ include_once 'includes/header.php';
         </form>
     </div>
 </div>
-
 <?php
 //Footer
 include_once 'includes/footer.php';
