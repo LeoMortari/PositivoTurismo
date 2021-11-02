@@ -134,10 +134,9 @@
               <label>Nome:</label><input class="campo_nome" type="text"><br>
               <label>Email:</label><input class="campo_email" type="text"><br>
               <label>Senha:</label><input class="campo_senha" type="password"><br>
-              <label>Telefone</label><input class="campo_telefone" type="number"><br>
-              <label>CPF</label><input class="campo_cpf" type="number"><br>
-              <label>Data de nascimento</label><input class="campo_nasc" type="date"> <br>
-
+              <label>Telefone:</label><input class="campo_telefone" type="number"><br>
+              <label>CPF:</label><input class="campo_cpf" type="number"><br>
+              <label>Data de nascimento:</label><input class="campo_nasc" type="date"> <br>
               <div class="button">
                 <input class="btn_submit" type="submit" value="Cadastrar" lang="postcss" scoped>
               </div>

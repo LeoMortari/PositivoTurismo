@@ -1,0 +1,42 @@
+<?php
+session_start();
+require_once 'C:/xampp/htdocs/PositivoTurismo/db_connect.php';
+
+if (isset($_POST['btn-cadastrar'])) {
+    $nome = mysqli_escape_string($connect, $_POST['nome']);
+    function Usuario($nome)
+    {
+        $usuario = explode(" ", $nome);
+        $count = count($usuario);
+        $usuario1 = strtolower($usuario[0]) . '.' . strtolower($usuario[$count - 1]);
+        return $usuario1;
+    }
+    $usuario = Usuario($nome);
+    $cpf = mysqli_escape_string($connect, $_POST['cpf']);
+    $email = mysqli_escape_string($connect, $_POST['email']);
+    $uf = mysqli_escape_string($connect, $_POST['uf']);
+    $idade = mysqli_escape_string($connect, $_POST['idade']);
+
+    function InverteData($idade)
+    {
+        $dataNormal = explode("/", $idade);
+        $dataBanco = $dataNormal[2] . "-" . $dataNormal[1] . "-" . $dataNormal[0];
+        echo $dataBanco;
+        return $dataBanco;
+    }
+
+    $idade = InverteData($idade);
+    $logradouro = mysqli_escape_string($connect, $_POST['logradouro']);
+    $passaporte = mysqli_escape_string($connect, $_POST['passaporte']);
+    $senha = mysqli_escape_string($connect, md5($_POST['senha']));
+
+    $sql = "INSERT INTO cliente (nome, cpf, email, uf, dataNascimento, logradouro, passaporte, usuario, senha) VALUES ('$nome', '$cpf', '$email', '$uf', '$idade', '$logradouro', '$passaporte','$usuario', '$senha')";
+
+    if (mysqli_query($connect, $sql)) {
+        $_SESSION['mensagem'] = "Cadastrado com sucesso!";
+        header('Location: ../index.php?sucesso');
+    } else {
+        $_SESSION['mensagem'] = "Erro ao cadastrar!";
+        header('Location: ../index.php?erro');
+    }
+}

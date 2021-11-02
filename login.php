@@ -37,6 +37,21 @@ if (isset($_POST['btn-entrar'])) {
     } else {
       // Validar usuario
       $sql = "SELECT usuario FROM cliente WHERE usuario = '$login'";
+      if (strpos($sql, 'admin')) {
+        $resultado = mysqli_query($connect, $sql);
+        if (mysqli_num_rows($resultado) > 0) {
+          $senha = md5($senha);
+          $sql = "SELECT * FROM cliente WHERE usuario = '$login' AND senha = '$senha'";
+          $resultado = mysqli_query($connect, $sql);
+          if (mysqli_num_rows($resultado) == 1) {
+            $dados = mysqli_fetch_array($resultado);
+            mysqli_close($connect);
+            $_SESSION['admin'] = true;
+            $_SESSION['id_usuario'] = $dados['id'];
+            header('Location: home/index.php');
+          }
+        }
+      }
       $resultado = mysqli_query($connect, $sql);
       if (mysqli_num_rows($resultado) > 0) {
         $senha = md5($senha);
