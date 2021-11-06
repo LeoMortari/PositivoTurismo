@@ -9,7 +9,6 @@ include_once 'includes/header.php';
 include_once 'includes/menssage.php';
 ?>
 
-
 <div class="container" style="display: flex;">
     <div class="col s12 m6 push-m3">
         <h3 class="light">Clientes</h3>

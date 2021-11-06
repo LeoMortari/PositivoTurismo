@@ -22,7 +22,6 @@ if (isset($_POST['btn-editar'])) {
         global $passaporte;
         $passaporte = 'Null';
     }
-    echo '<br>' . 'Passaporte = ' . $passaporte;
     $senha = mysqli_escape_string($connect, md5($_POST['senha']));
     $id = mysqli_escape_string($connect, $_POST['id']);
     $sql = "UPDATE cliente SET nome = '$nome', cpf = '$cpf', email = '$email', uf = '$uf', dataNascimento = '$idade', logradouro = '$logradouro', passaporte = '$passaporte', senha = '$senha' WHERE id = '$id'";

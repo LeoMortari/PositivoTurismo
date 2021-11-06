@@ -1,4 +1,5 @@
 <?php
+
 include_once '../db_connect.php';
 //Header
 include_once 'includes/header.php';
@@ -33,7 +34,7 @@ if (isset($_GET['id'])) {
                 <label for="uf">UF</label>
             </div>
             <div class="input-field col s12">
-                <input type="text" name="idade" id="idade" value="<?php echo $dados['dataNascimento']; ?>">
+                <input type="date" name="idade" id="idade" value="<?php echo $dados['dataNascimento']; ?>">
                 <label for="idade">Data de Nascimento</label>
             </div>
 
