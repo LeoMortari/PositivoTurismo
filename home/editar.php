@@ -11,7 +11,6 @@ if (isset($_GET['id'])) {
 }
 ?>
 
-
 <div class="row">
     <div class="col s12 m6 push-m3">
         <h3 class="light">Editar Cliente</h3>
@@ -43,6 +42,12 @@ if (isset($_GET['id'])) {
                 <label for="logradouro">Logradouro</label>
             </div>
             <div class="input-field col s12">
+                <?php
+                if ($dados['passaporte'] == 'Null') {
+                    global $dados;
+                    $dados['passaporte'] = '';
+                }
+                ?>
                 <input type="text" name="passaporte" id="passaporte" value="<?php echo $dados['passaporte']; ?>">
                 <label for="passaporte">Passaporte</label>
             </div>

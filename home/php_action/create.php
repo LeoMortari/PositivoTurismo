@@ -13,8 +13,8 @@ if (isset($_POST['btn-cadastrar'])) {
     }
     $usuario = Usuario($nome);
     $cpf = mysqli_escape_string($connect, $_POST['cpf']);
-    $email = mysqli_escape_string($connect, $_POST['email']);
-    $uf = mysqli_escape_string($connect, $_POST['uf']);
+    $email = strtolower(mysqli_escape_string($connect, $_POST['email']));
+    $uf = strtoupper(mysqli_escape_string($connect, $_POST['uf']));
     $idade = mysqli_escape_string($connect, $_POST['idade']);
 
     function InverteData($idade)
@@ -28,6 +28,10 @@ if (isset($_POST['btn-cadastrar'])) {
     $idade = InverteData($idade);
     $logradouro = mysqli_escape_string($connect, $_POST['logradouro']);
     $passaporte = mysqli_escape_string($connect, $_POST['passaporte']);
+    if ($passaporte == "") {
+        global $passaporte;
+        $passaporte = 'Null';
+    }
     $senha = mysqli_escape_string($connect, md5($_POST['senha']));
 
     $sql = "INSERT INTO cliente (nome, cpf, email, uf, dataNascimento, logradouro, passaporte, usuario, senha) VALUES ('$nome', '$cpf', '$email', '$uf', '$idade', '$logradouro', '$passaporte','$usuario', '$senha')";
