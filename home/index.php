@@ -14,7 +14,7 @@ include_once 'includes/menssage.php';
         <h3 class="light">Clientes</h3>
         <table class="striped">
             <br>
-            <a href="adicionar.php" class="btn">Adicionar Cliente</a>
+            <a href="adicionar.php" class="btn waves-effect waves-light">Adicionar Cliente</a>
             <thead>
                 <tr>
                     <th>ID:</th>

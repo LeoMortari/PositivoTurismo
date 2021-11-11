@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -10,6 +13,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fruktur&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
+  </script>
+  <script>
+    M.AutoInit();
+  </script>
+
 </head>
 
 <body>
@@ -120,30 +129,44 @@
       </div>
     </div>
   </div>
-
   <section id="form">
     <div class="bg-form">
-
       <div class="container-principal">
-
         <div class="content-form">
-
-          <form action="/pagina-processa-dados-do-form" method="post">
+          <form action="php_form/insert.php" method="POST">
             <fieldset>
               <h3>Complete com seus dados</h3>
-              <label>Nome:</label><input class="campo_nome" type="text"><br>
-              <label>Email:</label><input class="campo_email" type="text"><br>
-              <label>Senha:</label><input class="campo_senha" type="password"><br>
-              <label>Telefone:</label><input class="campo_telefone" type="number"><br>
-              <label>CPF:</label><input class="campo_cpf" type="number"><br>
-              <label>Data de nascimento:</label><input class="campo_nasc" type="date"> <br>
-              <div class="button">
-                <input class="btn_submit" type="submit" value="Cadastrar" lang="postcss" scoped>
+              <label>Nome:</label>
+              <input name="nome" class="campo_nome" type="text"><br>
+              <label>CPF:</label>
+              <input name="cpf" class="campo_cpf" type="text"><br>
+              <label>Email:</label>
+              <input name="email" class="campo_email" type="text"><br>
+              <label>Telefone:</label>
+              <input name="telefone" class="campo_telefone" type="text"><br>
+              <label>Senha:</label>
+              <input name="senha" class="campo_senha" type="password"><br>
+              <label>Data de nascimento:</label>
+              <input name="idade" class="campo_nasc" type="date"><br>
+              <button name="btn-submit" data-target="modal1" type="submit" class="btn modal-trigger">Cadastrar</button>
+              <!-- <div id="modal1" class="modal">
+                <div class="modal-content">
+                  <h4>Cadastro processado!</h4>
+                  <p>Clique em <b>OK</b> para completar seu cadastro</p>
+                </div>
+                <div class="modal-footer">
+                  <a href="php_form/insert.php" class="modal-close waves-effect waves-green btn-flat">OK</a>
+                </div>
               </div>
+              <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                  var elems = document.querySelectorAll('.modal');
+                  var instances = M.Modal.init(elems);
+                });
+              </script> -->
             </fieldset>
           </form>
         </div>
-
       </div>
     </div>
   </section>
