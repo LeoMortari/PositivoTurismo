@@ -8,14 +8,6 @@ if (isset($_POST['btn-editar'])) {
     $email = mysqli_escape_string($connect, $_POST['email']);
     $uf = mysqli_escape_string($connect, $_POST['uf']);
     $idade = mysqli_escape_string($connect, $_POST['idade']);
-    function InverteData($idade)
-    {
-        $dataNormal = explode("/", $idade);
-        $dataBanco = $dataNormal[2] . "-" . $dataNormal[1] . "-" . $dataNormal[0];
-        echo $dataBanco;
-        return $dataBanco;
-    }
-    $idade = InverteData($idade);
     $logradouro = mysqli_escape_string($connect, $_POST['logradouro']);
     $passaporte = mysqli_escape_string($connect, $_POST['passaporte']);
     if ($passaporte == "") {

@@ -88,9 +88,7 @@ function InverteData($data)
                             <li><b>Email: </b> <?php echo $dados['email']; ?></li>
                             <li><b>UF: </b><?php echo $dados['uf']; ?></li>
                             <li><b>Data de Nascimento: </b><?php
-                                $data = $dados['dataNascimento'];
-                                echo InverteData($data)
-                                ?></li>
+                                echo $dados['dataNascimento'];?></li>
                                <li><b>Logradouro: </b><?php echo $dados['logradouro']; ?></li> 
                                <li><b>Passaporte: </b><?php echo $dados['passaporte']; ?></li>
                                <li><b>usuario: </b><?php echo $dados['usuario']; ?></li>
@@ -113,9 +111,7 @@ function InverteData($data)
                             <li><b>Email: </b> <?php echo $dados['email']; ?></li>
                             <li><b>UF: </b><?php echo $dados['uf']; ?></li>
                             <li><b>Data de Nascimento: </b><?php
-                                $data = $dados['dataNascimento'];
-                                echo InverteData($data)
-                                ?></li>
+                                echo $dados['dataNascimento'];?></li>
                                <li><b>Logradouro: </b><?php echo $dados['logradouro']; ?></li> 
                                <li><b>Passaporte: </b><?php echo $dados['passaporte']; ?></li>
                                <li><b>usuario: </b><?php echo $dados['usuario']; ?></li>

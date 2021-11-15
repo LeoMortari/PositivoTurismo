@@ -16,16 +16,6 @@ if (isset($_POST['btn-cadastrar'])) {
     $email = strtolower(mysqli_escape_string($connect, $_POST['email']));
     $uf = strtoupper(mysqli_escape_string($connect, $_POST['uf']));
     $idade = mysqli_escape_string($connect, $_POST['idade']);
-
-    function InverteData($idade)
-    {
-        $dataNormal = explode("/", $idade);
-        $dataBanco = $dataNormal[2] . "-" . $dataNormal[1] . "-" . $dataNormal[0];
-        echo $dataBanco;
-        return $dataBanco;
-    }
-
-    $idade = InverteData($idade);
     $logradouro = mysqli_escape_string($connect, $_POST['logradouro']);
     $passaporte = mysqli_escape_string($connect, $_POST['passaporte']);
     if ($passaporte == "") {
