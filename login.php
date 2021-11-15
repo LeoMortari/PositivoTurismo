@@ -1,20 +1,13 @@
 <?php
-// Conexão banco de dados
 require_once 'db_connect.php';
-
-// Sessão
 session_start();
-
-// Botão enviar
 if (isset($_POST['btn-entrar'])) {
   $erros = array();
   $login = mysqli_escape_string($connect, $_POST['login']);
   $senha = mysqli_escape_string($connect, $_POST['senha']);
-
   if (empty($login) or empty($senha)) {
     $erros[] = "<li> O campo Login/Senha não pode estar vazio </li>";
   } else {
-    // Validar e-mail
     if (strpos($login, '@')) {
       $sql = "SELECT usuario FROM cliente WHERE email = '$login'";
       $resultado = mysqli_query($connect, $sql);
@@ -35,7 +28,6 @@ if (isset($_POST['btn-entrar'])) {
         $erros[] = "<li>Email inexistente</li>";
       }
     } else {
-      // Validar usuario
       $sql = "SELECT usuario FROM cliente WHERE usuario = '$login'";
       if (strpos($sql, 'admin')) {
         $resultado = mysqli_query($connect, $sql);
