@@ -20,7 +20,13 @@ function InverteData($data)
         <h3 class="light">Clientes</h3>
         <table class="striped">
             <br>
-            <a href="adicionar.php" class="btn waves-effect waves-light">Adicionar Cliente</a><br><br>
+            <a href="adicionar.php" class="btn waves-effect waves-light">Adicionar Cliente</a>
+            <?php
+            if (isset($_GET['search']) and $_GET['search'] != null){
+                ?>
+            <a href="index.php" class="btn red" style="margin-left:10px;">Página principal</a>
+            <?php }?>
+            <br><br>
             <form action="">
             <div class="input-field col m6">
           <i class="material-icons prefix ">search</i>
