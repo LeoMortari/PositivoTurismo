@@ -23,10 +23,10 @@ function InverteData($data)
             <a href="adicionar.php" class="btn waves-effect waves-light">Adicionar Cliente</a><br><br>
             <form action="">
             <div class="input-field col m6">
-          <i class="material-icons prefix">search</i>
-          <input placeholder="Nome, CPF ou qualquer coisa que envolva o cadastro do cliente" name="search" id="pesquisar" type="text" class="validate">
+          <i class="material-icons prefix ">search</i>
+          <input placeholder="Nome, CPF ou qualquer coisa que envolva o cadastro do cliente" name="search" id="pesquisar" type="text" class="validate ">
           <label for="pesquisar">Pesquisar</label>
-          <button type="submit" class="btn  waves-effect waves-light" >Buscar</button>
+          <button type="submit" class="btn blue waves-effect waves-light" >Buscar</button>
           </div>
         </form>
             <thead>
@@ -69,7 +69,26 @@ function InverteData($data)
                 $result = mysqli_query($connect, $sql_code);
                 if (mysqli_num_rows($result) > 0){
                     while ($dados = mysqli_fetch_assoc($result) ) {
-                        ?>
+                        if ($dados['usuario'] == 'admin') {
+                            ?>
+                            <tr>
+                            <td><?php echo $dados['nome']; ?></td>
+                            <td><?php echo $dados['cpf']; ?></td>
+                            <td><?php echo $dados['email']; ?></td>
+                            <td><?php echo $dados['uf']; ?></td>
+                            <td><?php
+                                $data = $dados['dataNascimento'];
+                                echo InverteData($data)
+                                ?></td>
+                            <td><?php echo $dados['logradouro']; ?></td>
+                            <td><?php echo $dados['passaporte']; ?></td>
+                            <td><?php echo $dados['usuario']; ?></td>
+  
+                        </tr>
+
+                        <?php
+                         } else {
+                             ?>
                         <tr>
                    <td><?php echo $dados['nome']; ?></td>
                         <td><?php echo $dados['cpf']; ?></td>
@@ -99,10 +118,10 @@ function InverteData($data)
                             </div>
                     </tr>
                     <?php
-                    }
+                }}
                     } else {
                         echo "<tr>
-                        <td>Nenhum resultado encontrado</td>
+                        <td class='col s12'><strong>Nenhum resultado encontrado</strong></td>
                     </tr>";
                     }
 
@@ -114,6 +133,24 @@ function InverteData($data)
                 if (mysqli_num_rows($resultado) > 0) {
 
                     while ($dados = mysqli_fetch_array($resultado)) {
+                        if ($dados['usuario'] == 'admin') {
+                            ?>
+                            <tr>
+                            <td><?php echo $dados['nome']; ?></td>
+                            <td><?php echo $dados['cpf']; ?></td>
+                            <td><?php echo $dados['email']; ?></td>
+                            <td><?php echo $dados['uf']; ?></td>
+                            <td><?php
+                                $data = $dados['dataNascimento'];
+                                echo InverteData($data)
+                                ?></td>
+                            <td><?php echo $dados['logradouro']; ?></td>
+                            <td><?php echo $dados['passaporte']; ?></td>
+                            <td><?php echo $dados['usuario']; ?></td>
+  
+                        </tr>
+                        <?php
+                        } else {
 
                 ?>
                         <tr>
@@ -146,7 +183,7 @@ function InverteData($data)
                             </div>
                         </tr>
                     <?php }
-             } else { ?>
+            } } else { ?>
                     <tr>
                         <td>-</td>
                         <td>-</td>
