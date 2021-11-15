@@ -44,7 +44,7 @@ if (isset($_GET['id'])) {
             </div>
             <div class="input-field col s12">
                 <?php
-                if ($dados['passaporte'] == 'Null') {
+                if ($dados['passaporte'] == 'Não possui') {
                     global $dados;
                     $dados['passaporte'] = '';
                 }

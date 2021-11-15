@@ -25,7 +25,7 @@ include_once 'includes/header.php';
                 <label for="uf">UF</label>
             </div>
             <div class="input-field col s12">
-                <input type="text" name="idade" id="idade">
+                <input type="date" name="idade" id="idade">
                 <label for="idade">Data de Nascimento</label>
             </div>
 

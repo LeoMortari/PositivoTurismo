@@ -16,7 +16,7 @@ function InverteData($data)
                     }
 ?>
 <div class="container" style="display: flex;">
-    <div class="col s12 m6 push-m3">
+    <div class="container">
         <h3 class="light">Clientes</h3>
         <table class="striped">
             <br>
@@ -35,7 +35,7 @@ function InverteData($data)
           <button type="submit" class="btn blue waves-effect waves-light" >Buscar</button>
           </div>
         </form>
-            <thead>
+            <!-- <thead>
                 <tr>
                     <th>Nome:</th>
                     <th>CPF:</th>
@@ -46,7 +46,7 @@ function InverteData($data)
                     <th>Passaporte:</th>
                     <th>usuario:</th>
                 </tr>
-            </thead>
+            </thead> -->
             <tbody>
                 <?php
                 if (isset($_GET['search']) && $_GET['search'] != null ){
@@ -77,39 +77,53 @@ function InverteData($data)
                     while ($dados = mysqli_fetch_assoc($result) ) {
                         if ($dados['usuario'] == 'admin') {
                             ?>
-                            <tr>
-                            <td><?php echo $dados['nome']; ?></td>
-                            <td><?php echo $dados['cpf']; ?></td>
-                            <td><?php echo $dados['email']; ?></td>
-                            <td><?php echo $dados['uf']; ?></td>
-                            <td><?php
+                            <ul class="collapsible col s12">
+                        <li>
+                        <div class="collapsible-header blue-text text-darken-2">
+                            <b><?php echo $dados['nome']; ?></b>
+                        </div>
+                        <div class="collapsible-body">
+                            <ul>
+                            <li><b>CPF: </b><?php echo $dados['cpf']; ?></li>
+                            <li><b>Email: </b> <?php echo $dados['email']; ?></li>
+                            <li><b>UF: </b><?php echo $dados['uf']; ?></li>
+                            <li><b>Data de Nascimento: </b><?php
                                 $data = $dados['dataNascimento'];
                                 echo InverteData($data)
-                                ?></td>
-                            <td><?php echo $dados['logradouro']; ?></td>
-                            <td><?php echo $dados['passaporte']; ?></td>
-                            <td><?php echo $dados['usuario']; ?></td>
-  
-                        </tr>
+                                ?></li>
+                               <li><b>Logradouro: </b><?php echo $dados['logradouro']; ?></li> 
+                               <li><b>Passaporte: </b><?php echo $dados['passaporte']; ?></li>
+                               <li><b>usuario: </b><?php echo $dados['usuario']; ?></li>
+                               
+                            </div>
+                        </li>
+                        </ul>
 
                         <?php
                          } else {
                              ?>
-                        <tr>
-                   <td><?php echo $dados['nome']; ?></td>
-                        <td><?php echo $dados['cpf']; ?></td>
-                        <td><?php echo $dados['email']; ?></td>
-                        <td><?php echo $dados['uf']; ?></td>
-                        <td><?php
-                            $data = $dados['dataNascimento'];
-                            echo InverteData($data)
-                            ?></td>
-                        <td><?php echo $dados['logradouro']; ?></td>
-                        <td><?php echo $dados['passaporte']; ?></td>
-                        <td><?php echo $dados['usuario']; ?></td>
-                        <td><a href="editar.php?id=<?php echo $dados['id']; ?>" class="btn-floating orange"><i class="material-icons">edit</i></a></td>
-                            <td><a href="#modal<?php echo $dados['id']; ?>" class="btn-floating red modal-trigger"><i class="material-icons">delete</i></a></td>
-                    <div id="modal<?php echo $dados['id']; ?>" class="modal">
+                        <ul class="collapsible col s12">
+                        <li>
+                        <div class="collapsible-header">
+                            <?php echo $dados['nome']; ?>
+                        </div>
+                        <div class="collapsible-body">
+                            <ul>
+                            <li><b>CPF: </b><?php echo $dados['cpf']; ?></li>
+                            <li><b>Email: </b> <?php echo $dados['email']; ?></li>
+                            <li><b>UF: </b><?php echo $dados['uf']; ?></li>
+                            <li><b>Data de Nascimento: </b><?php
+                                $data = $dados['dataNascimento'];
+                                echo InverteData($data)
+                                ?></li>
+                               <li><b>Logradouro: </b><?php echo $dados['logradouro']; ?></li> 
+                               <li><b>Passaporte: </b><?php echo $dados['passaporte']; ?></li>
+                               <li><b>usuario: </b><?php echo $dados['usuario']; ?></li>
+                               <br>
+                             <a href="editar.php?id=<?php echo $dados['id']; ?>" class="btn orange">Editar</a>
+                             <a href="#modal<?php echo $dados['id']; ?>" class="btn red modal-trigger">Excluir</a></div>
+                        </ul>
+                            <div id="modal<?php echo $dados['id']; ?>" class="modal">
                                 <div class="modal-content">
                                     <h4>Tem certeza?</h4>
                                     <p>Deseja excluir <?php echo $dados['nome']; ?>? </p>
@@ -122,7 +136,8 @@ function InverteData($data)
                                     </form>
                                 </div>
                             </div>
-                    </tr>
+                        </li>
+                        </ul>
                     <?php
                 }}
                     } else {
@@ -141,24 +156,92 @@ function InverteData($data)
                     while ($dados = mysqli_fetch_array($resultado)) {
                         if ($dados['usuario'] == 'admin') {
                             ?>
-                            <tr>
-                            <td><?php echo $dados['nome']; ?></td>
-                            <td><?php echo $dados['cpf']; ?></td>
-                            <td><?php echo $dados['email']; ?></td>
-                            <td><?php echo $dados['uf']; ?></td>
-                            <td><?php
+                            <ul class="collapsible col s12">
+                        <li>
+                        <div class="collapsible-header blue-text text-darken-2">
+                            <b><?php echo $dados['nome']; ?></b>
+                        </div>
+                        <div class="collapsible-body">
+                            <ul>
+                            <li><b>CPF: </b><?php echo $dados['cpf']; ?></li>
+                            <li><b>Email: </b> <?php echo $dados['email']; ?></li>
+                            <li><b>UF: </b><?php echo $dados['uf']; ?></li>
+                            <li><b>Data de Nascimento: </b><?php
                                 $data = $dados['dataNascimento'];
                                 echo InverteData($data)
-                                ?></td>
-                            <td><?php echo $dados['logradouro']; ?></td>
-                            <td><?php echo $dados['passaporte']; ?></td>
-                            <td><?php echo $dados['usuario']; ?></td>
-  
-                        </tr>
+                                ?></li>
+                               <li><b>Logradouro: </b><?php echo $dados['logradouro']; ?></li> 
+                               <li><b>Passaporte: </b><?php echo $dados['passaporte']; ?></li>
+                               <li><b>usuario: </b><?php echo $dados['usuario']; ?></li>
+                               
+                            </div>
+                        </li>
+                        </ul>
                         <?php
                         } else {
 
-                ?>
+                            ?>
+                        <ul class="collapsible col s12">
+                        <li>
+                        <div class="collapsible-header">
+                            <?php echo $dados['nome']; ?>
+                        </div>
+                        <div class="collapsible-body">
+                            <ul>
+                            <li><b>CPF: </b><?php echo $dados['cpf']; ?></li>
+                            <li><b>Email: </b> <?php echo $dados['email']; ?></li>
+                            <li><b>UF: </b><?php echo $dados['uf']; ?></li>
+                            <li><b>Data de Nascimento: </b><?php
+                                $data = $dados['dataNascimento'];
+                                echo InverteData($data)
+                                ?></li>
+                               <li><b>Logradouro: </b><?php echo $dados['logradouro']; ?></li> 
+                               <li><b>Passaporte: </b><?php echo $dados['passaporte']; ?></li>
+                               <li><b>usuario: </b><?php echo $dados['usuario']; ?></li>
+                               <br>
+                             <a href="editar.php?id=<?php echo $dados['id']; ?>" class="btn orange">Editar</a>
+                             <a href="#modal<?php echo $dados['id']; ?>" class="btn red modal-trigger">Excluir</a></div>
+                        </ul>
+                            <div id="modal<?php echo $dados['id']; ?>" class="modal">
+                                <div class="modal-content">
+                                    <h4>Tem certeza?</h4>
+                                    <p>Deseja excluir <?php echo $dados['nome']; ?>? </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <form action="php_action/delete.php" method="POST">
+                                        <input type="hidden" name="id" value="<?php echo $dados['id']; ?>">
+                                        <button type="submit" name="btn-deletar" class="btn red">Sim, quero deletar</button>
+                                        <a href="#!" class="modal-close btn-flat">Cancelar</a>
+                                    </form>
+                                </div>
+                            </div>
+                        </li>
+                        </ul>
+                        <!-- 
+                            <span class="badge">
+                            <?php echo $dados['email']; ?>
+                            </span>
+                            <span class="badge">
+                            <?php echo $dados['uf']; ?>
+                            </span>
+                            <span class="badge">
+                            <?php
+                                $data = $dados['dataNascimento'];
+                                echo InverteData($data)
+                                ?>
+                            </span>
+                            <span class="badge">
+                            <?php echo $dados['logradouro']; ?>
+                            </span>
+                            <span class="badge">
+                            <?php echo $dados['passaporte']; ?>
+                            </span>
+                            <span class="badge">
+                            <?php echo $dados['usuario']; ?>
+                            </span>
+                        
+                        
+                        
                         <tr>
                             <td><?php echo $dados['nome']; ?></td>
                             <td><?php echo $dados['cpf']; ?></td>
@@ -187,7 +270,7 @@ function InverteData($data)
                                     </form>
                                 </div>
                             </div>
-                        </tr>
+                        </tr> -->
                     <?php }
             } } else { ?>
                     <tr>

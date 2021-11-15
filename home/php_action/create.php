@@ -30,7 +30,7 @@ if (isset($_POST['btn-cadastrar'])) {
     $passaporte = mysqli_escape_string($connect, $_POST['passaporte']);
     if ($passaporte == "") {
         global $passaporte;
-        $passaporte = 'Null';
+        $passaporte = 'Não possui';
     }
     $senha = mysqli_escape_string($connect, md5($_POST['senha']));
 
