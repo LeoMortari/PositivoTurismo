@@ -21,7 +21,7 @@ if (isset($_POST['btn-submit'])) {
     $senha = mysqli_escape_string($connect, md5($_POST['senha']));
     $sql = "INSERT INTO cliente (nome, cpf, email, dataNascimento, usuario, senha) VALUES ('$nome', '$cpf', '$email', '$idade', '$usuario', '$senha')";
 
-    if (mysqli_query($connet, $sql)) {
+    if (mysqli_query($connect, $sql)) {
         header('Location: ../login.php');
     } else {
         echo "Erro ao cadastrar!";

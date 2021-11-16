@@ -14,17 +14,17 @@ function InverteData($data)
                         $dataBanco = $dataNormal[2] . "/" . $dataNormal[1] . "/" . $dataNormal[0];
                         return $dataBanco;
                     }
-?>
-<div class="container" style="display: flex;">
-    <div class="container">
-        <h3 class="light">Clientes</h3>
-        <table class="striped">
-            <br>
-            <a href="adicionar.php" class="btn waves-effect waves-light">Adicionar Cliente</a>
-            <?php
+                ?>
+            <div class="container" style="display: flex;">
+                <div class="container">
+                    <h3 class="light">Clientes</h3>
+                        <table class="striped">
+                            <a href="adicionar.php" class="btn waves-effect waves-light">Adicionar Cliente</a>
+                            <a href="../login.php" name="btn-logout" class="btn waves-effect waves-light red" style="margin-left:10px;">Encerrar sessão</a>
+                <?php
             if (isset($_GET['search']) and $_GET['search'] != null){
                 ?>
-            <a href="index.php" class="btn red" style="margin-left:10px;">Página principal</a>
+            <a href="index.php" class="btn green" style="margin-left:10px;">Página principal</a>
             <?php }?>
             <br><br>
             <form action="">
