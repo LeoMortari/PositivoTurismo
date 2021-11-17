@@ -9,19 +9,20 @@ include_once 'includes/header.php';
 include_once 'includes/menssage.php';
 
 function InverteData($data)
-                    {
-                        $dataNormal = explode("-", $data);
-                        $dataBanco = $dataNormal[2] . "/" . $dataNormal[1] . "/" . $dataNormal[0];
-                        return $dataBanco;
-                    }
-                ?>
-            <div class="container" style="display: flex;">
-                <div class="container">
-                    <h3 class="light">Clientes</h3>
-                        <table class="striped">
-                            <a href="adicionar.php" class="btn waves-effect waves-light">Adicionar Cliente</a>
-                            <a href="../login.php" name="btn-logout" class="btn waves-effect waves-light red" style="margin-left:10px;">Encerrar sessão</a>
-                <?php
+{
+$dataNormal = explode("-", $data);
+$dataBanco = $dataNormal[2] . "/" . $dataNormal[1] . "/" . $dataNormal[0];
+return $dataBanco;
+}
+?>
+<div class="container" style="display: flex;">
+    <div class="container">
+        <h3 class="light">Clientes</h3>
+        <table class="striped">
+            <br>
+            <a href="adicionar.php" class="btn waves-effect waves-light">Adicionar Cliente</a>
+            <a href="../login.php" class="btn waves-effect waves-light red" style="margin-left:10px;">Encerrar sessão</a>
+            <?php
             if (isset($_GET['search']) and $_GET['search'] != null){
                 ?>
             <a href="index.php" class="btn green" style="margin-left:10px;">Página principal</a>
@@ -144,7 +145,7 @@ function InverteData($data)
 
                 } else {
                 if(!isset($_GET['search']) or $_GET['search'] == null ){
-                $sql = "SELECT * FROM cliente";
+                $sql = "SELECT * FROM cliente ORDER BY nome asc";
                 $resultado = mysqli_query($connect, $sql);
 
                 if (mysqli_num_rows($resultado) > 0) {
