@@ -50,12 +50,10 @@ session_start();
       <div><img src="./images/0-main.png" alt="banner de apresentação"></div>
     </div>
   </div>
-
   <div class="flex-container" id="quem-somos">
     <div>
       <img src="./images/1-quem-somos.png" alt="balcão de atendimento">
     </div>
-
     <div class="responsivo">
       <h2>Quem somos</h2>
       <p>Website de uma agência de viagem que intermedia serviços entre seus clientes e determinados destinos
@@ -63,36 +61,29 @@ session_start();
         O principal intuito é facilitar, por meio de uma interface de fácil acesso, o agendamento para a locomoção. </p>
     </div>
   </div>
-
   <div class="container-externo">
     <div class="flex-container" id="servicos">
-
       <div class="list-servicos">
         <div class="item-servico">
           <div><img class="svg" src="./images/icon-2.png" alt="hospedagens"></div>
           <p>Hospedagens</p>
           <a href="#" class="btn">Comprar Agora</a>
         </div>
-
         <div class="item-servico">
           <div><img class="svg" src="./images/icon-1.png" alt="pacote de viagens"></div>
           <p>Pacotes de viagens</p>
           <a href="#" class="btn">Comprar Agora</a>
         </div>
-
         <div class="item-servico">
           <div><img class="svg" src="./images/icon-3.png" alt="roteiros personalizados"></div>
           <p>Roteiros personalizados</p>
           <a href="#" class="btn">Comprar Agora</a>
         </div>
-
       </div>
     </div>
   </div>
-
   <div class="flex-container" id="planos">
     <div class="list-planos">
-
       <div class="item-plano">
         <h3>Plano 1</h3>
         <ul>
@@ -102,7 +93,6 @@ session_start();
         </ul>
         <a href="#" class="btn">Saiba Mais!</a>
       </div>
-
       <div class="item-plano">
         <h3>Plano 2</h3>
         <ul>
@@ -114,7 +104,6 @@ session_start();
         </ul>
         <a href="#" class="btn">Saiba Mais!</a>
       </div>
-
       <div class="item-plano">
         <h3>Plano 3</h3>
         <ul>
@@ -148,22 +137,7 @@ session_start();
               <input name="senha" class="campo_senha" type="password"><br>
               <label>Data de nascimento:</label>
               <input name="idade" class="campo_nasc" type="date"><br>
-              <button name="btn-submit" data-target="modal1" type="submit" class="btn modal-trigger">Cadastrar</button>
-              <!-- <div id="modal1" class="modal">
-                <div class="modal-content">
-                  <h4>Cadastro processado!</h4>
-                  <p>Clique em <b>OK</b> para completar seu cadastro</p>
-                </div>
-                <div class="modal-footer">
-                  <a href="php_form/insert.php" class="modal-close waves-effect waves-green btn-flat">OK</a>
-                </div>
-              </div>
-              <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                  var elems = document.querySelectorAll('.modal');
-                  var instances = M.Modal.init(elems);
-                });
-              </script> -->
+              <button name="btn-submit" type="submit" class="btn">Cadastrar</button>
             </fieldset>
           </form>
         </div>
@@ -182,5 +156,4 @@ session_start();
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous">
   </script>
 </body>
-
 </html>

@@ -22,9 +22,21 @@ if (isset($_POST['btn-submit'])) {
     $sql = "INSERT INTO cliente (nome, cpf, email, dataNascimento, usuario, senha) VALUES ('$nome', '$cpf', '$email', '$idade', '$usuario', '$senha')";
 
     if (mysqli_query($connect, $sql)) {
+        $_SESSION['modal-login'] = true;
+        $_SESSION['usuario'] = $usuario;
+        $_SESSION['email'] = $email;
         header('Location: ../login.php');
     } else {
         echo "Erro ao cadastrar!";
     }
     include_once '../home/includes/footer.php';
 }
+
+
+?>
+        <!-- <form action="../login.php" method="post">
+        <input type="hidden" name="usuario" value="<?php //$usuario ?>">
+        <input type="hidden" name="email" value="<?php //$ab ?>">
+        <input type="submit">
+        </form> -->
+        <?php
