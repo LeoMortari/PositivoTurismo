@@ -1,5 +1,6 @@
 <?php
 session_start();
+$erros = array();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -15,10 +16,6 @@ session_start();
   <link href="https://fonts.googleapis.com/css2?family=Fruktur&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
   </script>
-  <script>
-    M.AutoInit();
-  </script>
-
 </head>
 
 <body>
@@ -118,6 +115,37 @@ session_start();
       </div>
     </div>
   </div>
+  <?php
+  if (isset($_SESSION['erro'])) {
+  ?>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    var Modalelem = document.querySelector('#modal1');
+    var instance = M.Modal.init(Modalelem);
+    instance.open();
+    });
+</script>
+<div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content">
+      <h4>Atenção!</h4>
+      <p>Erros encontrados no cadastro:</p>
+      <p>
+      <?php
+foreach ($_SESSION['erro'] as $erro){
+ echo $erro;
+};
+session_unset();
+ ?>
+ </p>
+    </div>
+    <div class="modal-footer">
+      <a href="#form" class="modal-close waves-effect waves-green btn-flat">Entendi</a>
+    </div>
+  </div>
+<?php 
+
+  }
+?>
   <section id="form">
     <div class="bg-form">
       <div class="container-principal">
@@ -155,5 +183,8 @@ session_start();
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous">
   </script>
+  <?php
+  include_once 'home/includes/header.php';
+  ?>
 </body>
 </html>

@@ -115,13 +115,29 @@ if (isset($_POST['btn-entrar'])) {
         </div>
         <?php
         if (!empty($erros)) {
-          foreach ($erros as $erro) {
-            echo $erro;
-          }
-        }
         ?>
+        <script>
+    document.addEventListener('DOMContentLoaded', function () {
+    var Modalelem = document.querySelector('#modal1');
+    var instance = M.Modal.init(Modalelem);
+    instance.open();
+    });
+</script>
+<div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>ATENÇÃO!</h4>
+      <p><?php
+      foreach ($erros as $erro) {
+        echo $erro;
+      } 
+      ?></p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn">Entendi</a>
+    </div>
+  </div>
+  <?php }?>
       </form>
-
     </div>
   </section>
   <?php
