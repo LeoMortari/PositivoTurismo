@@ -1,4 +1,5 @@
 <?php
+include_once 'home/includes/header.php';
 session_start();
 $erros = array();
 ?>
@@ -24,7 +25,7 @@ $erros = array();
       <div>
         <h1>PositivoTurismo</h1>
       </div>
-      <ul class="list-items">
+      <ul class="list-items col s12">
         <li><a href="#quem-somos">Quem Somos</a></li>
         <li><a href="#servicos">Serviços</a></li>
         <li><a href="#planos">Planos</a></li>
@@ -39,7 +40,7 @@ $erros = array();
       <div class="texto-apresentacao">
         <h1>Positivo<br>Turismo</h1>
         <p>O melhor serviço para você!</p>
-        <a href="" class="btn">Saiba Mais!</a>
+        <a href="" class="btn blue darken-4">Saiba Mais!</a>
       </div>
     </div>
 
@@ -165,7 +166,7 @@ session_unset();
               <input name="senha" class="campo_senha" type="password"><br>
               <label>Data de nascimento:</label>
               <input name="idade" class="campo_nasc" type="date"><br>
-              <button name="btn-submit" type="submit" class="btn">Cadastrar</button>
+              <button name="btn-submit" id="btn_submit" type="submit" class="btn blue darken-4">Cadastrar</button>
             </fieldset>
           </form>
         </div>
@@ -178,13 +179,9 @@ session_unset();
       <p>&copy; 2021 UNIVERSIDADE POSITIVO</p>
     </div>
   </footer>
-  <script src="main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous">
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous">
   </script>
-  <?php
-  include_once 'home/includes/header.php';
-  ?>
 </body>
 </html>
