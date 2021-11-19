@@ -1,4 +1,13 @@
 <?php
+function ValidaIdade ($aniversario) {
+    $anoAtual = intval(date("Y"));
+    $dataBD = explode('-', $aniversario);
+    $ano = intval($dataBD[0]);
+    $idade = $anoAtual - $ano;
+    echo $idade;
+    return $idade;
+}
+
 function ValidaIndex() 
 {
     $cpftest = str_split($_POST['cpf']);
@@ -9,6 +18,8 @@ function ValidaIndex()
 
     $senha = str_split($_POST['senha']);
     $countPasswd = count($senha);
+
+    $aniversario = strval($_POST['idade']);
     // Inicio do escopo de validação do form da index 
     if(preg_match('/[0-9]/', $_POST['nome']))
     {
@@ -39,6 +50,10 @@ function ValidaIndex()
     {
         $erros[] = "<li style='color:red'>A senha deve possuir no máximo 16 caracteres</li>";
     }
+    // ValidaIdade($aniversario);
+    // if ($idade < 18) {
+    //     $erros[] = "<li style='color:red'>Você deve ser maior de idade</li>";
+    // }
   // Final do escopo de validação do form da index
       $_SESSION['erro'] = $erros;
 }

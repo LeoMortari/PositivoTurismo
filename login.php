@@ -162,6 +162,18 @@ if (isset($_POST['btn-entrar'])) {
 <?php 
   }
 ?>
+    <?php 
+    $aniversario = '1999-05-04';
+    function ValidaIdade ($aniversario) {
+      $anoAtual = intval(date("Y"));
+      $dataBD = explode('-', $aniversario);
+      $ano = intval($dataBD[0]);
+      $idade = $anoAtual - $ano;
+      echo $idade;
+      return $idade;
+  }
+  ValidaIdade($aniversario);
+    ?>
   <footer>
     <div class="flex-container interna">
       <p>&copy; 2021 UNIVERSIDADE POSITIVO</p>

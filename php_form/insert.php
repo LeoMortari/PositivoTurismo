@@ -2,7 +2,7 @@
 session_start();
 require_once '../db_connect.php';
 include_once '../home/includes/header.php';
-require_once '../validacao.php';
+require_once '../funcao.php';
 
 $erros = array();
 
