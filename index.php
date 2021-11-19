@@ -1,8 +1,8 @@
-    <?php
-    include_once 'home/includes/header.php';
-    session_start();
-    $erros = array();
-    ?>
+  <?php
+  include_once 'home/includes/header.php';
+  session_start();
+  $erros = array();
+  ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -125,7 +125,6 @@
 <div id="modal1" class="modal bottom-sheet">
     <div class="modal-content">
       <h4>Atenção!</h4>
-      <p>Erros encontrados no cadastro:</p>
       <p>
       <?php
       foreach ($_SESSION['erro'] as $erro){
@@ -136,7 +135,7 @@
  </p>
     </div>
     <div class="modal-footer">
-      <a href="#form" class="modal-close waves-effect waves-green btn-flat">Entendi</a>
+      <a href="#form" class="modal-close waves-effect waves-green btn">Entendi</a>
     </div>
   </div>
 <?php 
@@ -150,7 +149,7 @@
             <fieldset>
               <h3>Complete com seus dados</h3>
               <label>Nome:</label>
-              <input name="nome" class="campo_nome" type="text"><br>
+              <input name="nome" class="campo_nome" type="text" required><br>
               <label>CPF:</label>
               <input name="cpf" class="campo_cpf" type="text"><br>
               <label>Email:</label>

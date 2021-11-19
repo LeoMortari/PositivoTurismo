@@ -2,34 +2,65 @@
 session_start();
 require_once '../db_connect.php';
 include_once '../home/includes/header.php';
-$telefone = str_split($_POST['telefone']);
-$countTel = count($telefone);
 
-$senha = str_split($_POST['senha']);
-$countPasswd = count($senha);
-if (isset($_POST['btn-submit'])){
-    if (strpos($_POST['nome'],"teste") or empty($_POST['nome']) ) { 
-      $erros[] = "<li style='color:red'> O nome não pode conter caracteres númericos</li>";
-  } if (strpos($_POST['cpf'], "a") or empty($_POST['cpf'])) {
-      $erros[] = "<li style='color:red'> O CPF não pode conter caracteres alfabeticos</li>";  
-  } if (!strpos($_POST['email'],"@") or empty($_POST['email'])) {
-      $erros[] = "<li style='color:red'> Digite um e-mail válido</li>";  
-  } if (strpos($_POST['telefone'], "a") || $telefone != 11 || empty($_POST['telefone'])) {
-    $erros[] = "<li style='color:red'> Digite um telefone válido</li>";  
-  } if ($countPasswd < 8 or empty($_POST['senha'])) {
-    $erros[] = "<li style='color:red'> Digite uma senha com no minimo 8 caracteres</li>";  
-  }
+$erros = array();
+function ValidaIndex() 
+{
+    $cpftest = str_split($_POST['cpf']);
+    $countCpf = count($cpftest);
+
+    $telefone = str_split($_POST['telefone']);
+    $countTel = count($telefone);
+
+    $senha = str_split($_POST['senha']);
+    $countPasswd = count($senha);
+    // Inicio do escopo de validação do form da index 
+    if(preg_match('/[0-9]/', $_POST['nome']))
+    {
+        $erros[] = "<li style='color:red'> O nome não pode conter caracteres númericos</li>";
+    } 
+   if (preg_match('/[A-Za-z]/', $_POST['cpf']))
+    {
+        $erros[] = "<li style='color:red'> O CPF não pode conter caracteres alfabeticos</li>";
+    } else {
+    if ($countCpf != 11)
+    {
+     $erros[] = "<li style='color:red'> Digite um CPF válido</li>";
+    }
+    }
+    if (!str_contains($_POST['email'],"@"))
+    {
+        $erros[] = "<li style='color:red'> Digite um e-mail válido</li>";  
+    } 
+    if (preg_match('/[A-Za-z]/', $_POST['telefone']) or $countTel != 11) 
+    {
+    // $erros[] = "<li style='color:red'>$countTel</li>"; 
+        $erros[] = "<li style='color:red'> Digite um telefone válido</li>";  
+    } 
+    if ($countPasswd < 8) {
+        $erros[] = "<li style='color:red'> Digite uma senha com no minimo 8 caracteres</li>";  
+    }
+    if ($countPasswd > 16)
+    {
+        $erros[] = "<li style='color:red'>A senha deve possuir no máximo 16 caracteres</li>";
+    }
+  // Final do escopo de validação do form da index
       $_SESSION['erro'] = $erros;
-  }
+}
 
 function Usuario($nome)
+{
+    $usuario = explode(" ", $nome);
+    $count = count($usuario);
+    $usuario1 = strtolower($usuario[0]) . '.' . strtolower($usuario[$count - 1]);
+    return $usuario1;
+}
+
+if (isset($_POST['btn-submit']))
     {
-        $usuario = explode(" ", $nome);
-        $count = count($usuario);
-        $usuario1 = strtolower($usuario[0]) . '.' . strtolower($usuario[$count - 1]);
-        return $usuario1;
+    ValidaIndex();
     }
-    $erros = array();
+
     if (isset($_POST['btn-submit'])) {
     $nome = mysqli_escape_string($connect, $_POST['nome']);
     $usuario = Usuario($nome);
@@ -44,18 +75,7 @@ function Usuario($nome)
         $_SESSION['email'] = $email;
         header('Location: ../login.php');
     } else {
-        // $_SESSION['modal-index-error'] = true;
         header('Location: ../index.php');
-        // session_unset();
     }
     include_once '../home/includes/footer.php';
 }
-
-
-?>
-        <!-- <form action="../login.php" method="post">
-        <input type="hidden" name="usuario" value="<?php //$usuario ?>">
-        <input type="hidden" name="email" value="<?php //$ab ?>">
-        <input type="submit">
-        </form> -->
-        <?php
