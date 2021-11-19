@@ -90,9 +90,7 @@ if (isset($_POST['btn-entrar'])) {
         </a>
       </div>
       <ul class="list-items">
-        <li><a href="#quem-somos">Quem Somos</a></li>
-        <li><a href="#servicos">Serviços</a></li>
-        <li><a href="#planos">Planos</a></li>
+        <li><a href="index.php" class="btn-small blue darken-3">Voltar</a></li>
       </ul>
     </div>
   </header>
@@ -109,7 +107,7 @@ if (isset($_POST['btn-entrar'])) {
         <label for="senha">Senha</label>
         <input type="password" name="senha">
         <div class="box-botao">
-          <button name="btn-entrar" type="submit" value="Entrar">
+          <button name="btn-entrar" class="btn-small blue darken-3" type="submit">
             <span>Entrar</span>
           </button>
         </div>
@@ -122,8 +120,8 @@ if (isset($_POST['btn-entrar'])) {
     var instance = M.Modal.init(Modalelem);
     instance.open();
     });
-</script>
-<div id="modal1" class="modal">
+      </script>
+    <div id="modal1" class="modal">
     <div class="modal-content">
       <h4>ATENÇÃO!</h4>
       <p><?php

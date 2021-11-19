@@ -1,11 +1,10 @@
-<?php
-include_once 'home/includes/header.php';
-session_start();
-$erros = array();
-?>
+    <?php
+    include_once 'home/includes/header.php';
+    session_start();
+    $erros = array();
+    ?>
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +17,6 @@ $erros = array();
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
   </script>
 </head>
-
 <body>
   <header>
     <div class="flex-container menu">
@@ -34,16 +32,14 @@ $erros = array();
       </ul>
     </div>
   </header>
-
   <div class="flex-container apresentacao">
     <div>
       <div class="texto-apresentacao">
         <h1>Positivo<br>Turismo</h1>
         <p>O melhor serviço para você!</p>
-        <a href="" class="btn blue darken-4">Saiba Mais!</a>
+        <a href="#planos" class="btn blue darken-4">Saiba Mais!</a>
       </div>
     </div>
-
     <div>
       <div><img src="./images/0-main.png" alt="banner de apresentação"></div>
     </div>
@@ -65,17 +61,17 @@ $erros = array();
         <div class="item-servico">
           <div><img class="svg" src="./images/icon-2.png" alt="hospedagens"></div>
           <p>Hospedagens</p>
-          <a href="#" class="btn">Comprar Agora</a>
+          <a href="login.php" class="btn">Comprar Agora</a>
         </div>
         <div class="item-servico">
           <div><img class="svg" src="./images/icon-1.png" alt="pacote de viagens"></div>
           <p>Pacotes de viagens</p>
-          <a href="#" class="btn">Comprar Agora</a>
+          <a href="login.php" class="btn">Comprar Agora</a>
         </div>
         <div class="item-servico">
           <div><img class="svg" src="./images/icon-3.png" alt="roteiros personalizados"></div>
           <p>Roteiros personalizados</p>
-          <a href="#" class="btn">Comprar Agora</a>
+          <a href="login.php" class="btn">Comprar Agora</a>
         </div>
       </div>
     </div>
@@ -89,7 +85,7 @@ $erros = array();
           <li>Serviços de quarto</li>
           <li>Guia turístico</li>
         </ul>
-        <a href="#" class="btn">Saiba Mais!</a>
+        <a href="#form" class="btn">Selecionar</a>
       </div>
       <div class="item-plano">
         <h3>Plano 2</h3>
@@ -100,7 +96,7 @@ $erros = array();
           <li>Roteiro de trilhas</li>
           <li>Serviço personalizado</li>
         </ul>
-        <a href="#" class="btn">Saiba Mais!</a>
+        <a href="#form" class="btn">Selecionar</a>
       </div>
       <div class="item-plano">
         <h3>Plano 3</h3>
@@ -112,13 +108,13 @@ $erros = array();
           <li>Serviço personalizado</li>
           <li>Área Vip</li>
         </ul>
-        <a href="#" class="btn">Saiba Mais!</a>
+        <a href="#form" class="btn">Selecionar</a>
       </div>
     </div>
   </div>
-  <?php
-  if (isset($_SESSION['erro'])) {
-  ?>
+    <?php
+    if (isset($_SESSION['erro'])) {
+    ?>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
     var Modalelem = document.querySelector('#modal1');
@@ -132,11 +128,11 @@ $erros = array();
       <p>Erros encontrados no cadastro:</p>
       <p>
       <?php
-foreach ($_SESSION['erro'] as $erro){
- echo $erro;
-};
-session_unset();
- ?>
+      foreach ($_SESSION['erro'] as $erro){
+      echo $erro;
+      };
+      session_unset();
+      ?>
  </p>
     </div>
     <div class="modal-footer">
@@ -144,7 +140,6 @@ session_unset();
     </div>
   </div>
 <?php 
-
   }
 ?>
   <section id="form">
