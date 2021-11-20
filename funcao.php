@@ -29,16 +29,21 @@ function ValidaIndex()
     {
         $erros[] = "<li style='color:red'> O CPF não pode conter caracteres alfabeticos</li>";
     } else {
-    if ($countCpf != 11)
-    {
+        $cepef = ValidaCpf($cpf);
+        if($cepef = 0){
+            if ($countCpf != 11)
+            {
      $erros[] = "<li style='color:red'> Digite um CPF válido</li>";
+            }
+    } else if ($cepef = 1) {
+        $erros[] = "<li style='color:red'>Essa pessoa já possui uma conta</li>"; 
     }
-    }
-    if (!str_contains($_POST['email'],"@"))
+}
+    if (!strpos($_POST['email'],"@"))
     {
         $erros[] = "<li style='color:red'> Digite um e-mail válido</li>";  
     } 
-    if (preg_match('/[A-Za-z]/', $_POST['telefone']) or $countTel != 11) 
+    if (preg_match('/[A-Za-z]/', $_POST['telefone']) or $countTel != 11)
     {
     // $erros[] = "<li style='color:red'>$countTel</li>"; 
         $erros[] = "<li style='color:red'> Digite um telefone válido</li>";  
@@ -50,11 +55,6 @@ function ValidaIndex()
     {
         $erros[] = "<li style='color:red'>A senha deve possuir no máximo 16 caracteres</li>";
     }
-    // ValidaIdade($aniversario);
-    // if ($idade < 18) {
-    //     $erros[] = "<li style='color:red'>Você deve ser maior de idade</li>";
-    // }
-  // Final do escopo de validação do form da index
       $_SESSION['erro'] = $erros;
 }
 
@@ -64,4 +64,14 @@ function Usuario($nome)
     $count = count($usuario);
     $usuario1 = strtolower($usuario[0]) . '.' . strtolower($usuario[$count - 1]);
     return $usuario1;
+}
+
+function ValidaCpf ($cpf) {
+    $sql = "SELECT cpf FROM cliente WHERE cpf = '$cpf'";
+    $query = mysqli_query($connect, $sql);
+    if (mysqli_num_rows($query) > 0) {
+        return 1;
+    } else {
+        return 0;
+    }
 }

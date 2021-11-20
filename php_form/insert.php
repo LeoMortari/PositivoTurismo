@@ -25,6 +25,7 @@ if (isset($_POST['btn-submit']))
         $_SESSION['email'] = $email;
         header('Location: ../login.php');
     } else {
+        $_SESSION['modal-index'] = true;
         header('Location: ../index.php');
     }
     include_once '../home/includes/footer.php';
