@@ -8,10 +8,11 @@ $erros = array();
 
 if (isset($_POST['btn-submit']))
     {
-    ValidaIndex();
-    }
-
-    if (isset($_POST['btn-submit'])) {
+    $valida = ValidaIndex();
+    if ($valida == 1) {
+        $_SESSION['modal-index'] = true;
+        header('Location: ../index.php');
+    } else {
     $nome = mysqli_escape_string($connect, $_POST['nome']);
     $usuario = Usuario($nome);
     $cpf = mysqli_escape_string($connect, $_POST['cpf']);
@@ -28,5 +29,6 @@ if (isset($_POST['btn-submit']))
         $_SESSION['modal-index'] = true;
         header('Location: ../index.php');
     }
+}
     include_once '../home/includes/footer.php';
 }

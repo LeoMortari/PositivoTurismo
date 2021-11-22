@@ -157,7 +157,7 @@
               <label>Telefone:</label>
               <input name="telefone" class="campo_telefone" type="text"><br>
               <label>Senha:</label>
-              <input name="senha" class="campo_senha" type="password"><br>
+              <input id="senha" name="senha" class="campo_senha" type="password"><br>
               <label>Data de nascimento:</label>
               <input name="idade" class="campo_nasc" type="date"><br>
               <button name="btn-submit" id="btn_submit" type="submit" class="btn blue darken-4">Cadastrar</button>

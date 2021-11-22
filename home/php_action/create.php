@@ -1,16 +1,11 @@
 <?php
 session_start();
 require_once 'C:/xampp/htdocs/PositivoTurismo/db_connect.php';
+include_once 'C:/xampp/htdocs/PositivoTurismo/funcao.php';
 
 if (isset($_POST['btn-cadastrar'])) {
+    ValidaIndex();
     $nome = mysqli_escape_string($connect, $_POST['nome']);
-    function Usuario($nome)
-    {
-        $usuario = explode(" ", $nome);
-        $count = count($usuario);
-        $usuario1 = strtolower($usuario[0]) . '.' . strtolower($usuario[$count - 1]);
-        return $usuario1;
-    }
     $usuario = Usuario($nome);
     $cpf = mysqli_escape_string($connect, $_POST['cpf']);
     $email = strtolower(mysqli_escape_string($connect, $_POST['email']));

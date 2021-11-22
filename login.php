@@ -2,6 +2,7 @@
 
 include_once 'home/includes/header.php';
 require_once 'db_connect.php';
+require_once 'funcao.php';
 session_start();
 
 
