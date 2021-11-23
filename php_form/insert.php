@@ -4,8 +4,6 @@ require_once '../db_connect.php';
 include_once '../home/includes/header.php';
 require_once '../funcao.php';
 
-$erros = array();
-
 if (isset($_POST['btn-submit']))
     {
     $valida = ValidaIndex();
@@ -32,3 +30,5 @@ if (isset($_POST['btn-submit']))
 }
     include_once '../home/includes/footer.php';
 }
+
+?>

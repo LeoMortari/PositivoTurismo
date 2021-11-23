@@ -1,5 +1,4 @@
 <?php
-
 require_once 'C:/xampp/htdocs/PositivoTurismo/db_connect.php';
 
 function ValidaIdade ($aniversario) {
@@ -10,7 +9,7 @@ function ValidaIdade ($aniversario) {
     echo $idade;
     return $idade;
 }
-
+$erros = array();
 function ValidaIndex() 
 {
     $cpftest = str_split($_POST['cpf']);
@@ -21,10 +20,6 @@ function ValidaIndex()
 
     $senha = str_split($_POST['senha']);
     $countPasswd = count($senha);
-
-    $uppercase = preg_match('@[A-Z]@', $_POST['senha']);
-    $lowercase = preg_match('@[a-z]@', $_POST['senha']);
-    $number = preg_match('@[0-9]@', $_POST['senha']);
 
 
     $aniversario = strval($_POST['idade']);
@@ -51,41 +46,15 @@ function ValidaIndex()
     if (preg_match('/[A-Za-z]/', $_POST['telefone']) or $countTel != 11)
     { 
         $erros[] = "<li style='color:red'> Digite um telefone válido</li>";  
-    } 
-    ?>
-    <script>
-    const MAIUSCULA = new Set('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
-    const MINUSCULA = new Set('abcdefghijklmnopqrstuvwxyz')
-    function isNumber(c) { return c === '' + Number(c) }
-    
-    function validaSenha(s) {
-      let encontreMaiuscula = 0
-      let encontreMinuscula = 0
-      let encontreNumero = 0
-    
-      for (let c of s) {
-        encontreMaiuscula = encontreMaiuscula || MAIUSCULA.has(c)
-        encontreMinuscula = encontreMinuscula || MINUSCULA.has(c)
-        encontreNumero = encontreNumero || isNumber(c)
-        if (encontreMaiuscula && encontreMinuscula && encontreNumero) return 1
-      }
-    
-      return 0
     }
-    var validasenha = validaSenha("<?php echo $_POST["senha"]; ?>");
-        if ($validaSenha == 0){
-            var erros
-            erros[] = "<li style='color:red'>Você deve digitar uma senha que contenha pelo menos: 1 Maiusculo, 1 minusculo e 1 número</li>"
+    if (isset($_POST['input'])) {
+        $senha = $_POST['input'];
+        if ($senha == 0)
+        {
+            $erros[] = "<li style='color:red'>Você deve digitar uma senha que contenha pelo menos: 1 Maiusculo, 1 minusculo e 1 número</li>";
         }
-    // console.log(validaSenha("<?php echo "Leonardo"; ?>"))
-    </script>
-    <?php
-    echo "<script>document.writeln(erros);</script>";
-    if ($validaSenha == false)
-    { 
-        $erros[] = "<li style='color:red'>Você deve digitar uma senha que contenha pelo menos: 1 Maiusculo, 1 minusculo e 1 número</li>";
-    } else {
-        //Senha menor que 8
+    }
+        // Senha menor que 8
         if($countPasswd < 8)
         {
             $erros[] = "<li style='color:red'> Digite uma senha com no minimo 8 caracteres</li>"; 
@@ -104,7 +73,6 @@ function ValidaIndex()
       } else {
           return 1;
       }
-}
 
 function Usuario($nome)
 {
