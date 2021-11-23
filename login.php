@@ -2,7 +2,6 @@
 
 include_once 'home/includes/header.php';
 require_once 'db_connect.php';
-require_once 'funcao.php';
 session_start();
 
 if (isset($_POST['btn-entrar'])) {

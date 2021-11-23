@@ -11,7 +11,6 @@ function ValidaIdade($aniversario)
     return $idade;
 }
 
-
 function ValidaIndex()
 {
     $cpf = $_POST['cpf'];
@@ -53,7 +52,6 @@ function ValidaIndex()
         if (preg_match('/[A-Za-z]/', $_POST['telefone']) or $countTel != 11 && $countTel != 10) {
             $erros[] = "<li style='color:red'> Digite um telefone válido</li>";
         }
-        echo var_dump($_POST);
         if (isset($_POST['input'])) {
             $senha = intval($_POST['input']);
             if ($senha == 0) {
@@ -68,7 +66,7 @@ function ValidaIndex()
         }
         $_SESSION['erro'] = $erros;
 
-        if (count($_SESSION['erro']) == 0) {
+        if (is_null($_SESSION['erro'])) {
             return 0;
         } else {
             return 1;

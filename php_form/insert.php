@@ -10,7 +10,8 @@ if (isset($_POST['btn-submit'])) {
         $_SESSION['modal-index'] = true;
         header('Location: ../index.php');
     } else {
-        $nome = mysqli_escape_string($connect, $_POST['nome']);
+        if (isset($_POST['btn-submit']))
+            $nome = mysqli_escape_string($connect, $_POST['nome']);
         $usuario = Usuario($nome);
         $cpf = mysqli_escape_string($connect, $_POST['cpf']);
         $email = strtolower(mysqli_escape_string($connect, $_POST['email']));
