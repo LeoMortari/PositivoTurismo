@@ -157,10 +157,11 @@
               <label>Telefone:</label>
               <input name="telefone" class="campo_telefone" type="text"><br>
               <label>Senha:</label>
-              <input name="senha" class="campo_senha" type="password"><br>
+              <input name="senha" id="senha" class="campo_senha" type="password"><br>
+              <input type="hidden" id="input" name="input">
               <label>Data de nascimento:</label>
               <input name="idade" class="campo_nasc" type="date"><br>
-              <button name="btn-submit" id="btn_submit" type="submit" class="btn blue darken-4">Cadastrar</button>
+              <button name="btn-submit" onclick=Senha() id="btn_submit" type="submit" class="btn blue darken-4">Cadastrar</button>
             </fieldset>
           </form>
         </div>
@@ -177,5 +178,41 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous">
   </script>
+  <script>
+    const MAIUSCULA = new Set('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+    const MINUSCULA = new Set('abcdefghijklmnopqrstuvwxyz')
+    function isNumber(c) { return c === '' + Number(c) }
+    
+    function validaSenha(s) {
+      let encontreMaiuscula = 0
+      let encontreMinuscula = 0
+      let encontreNumero = 0
+    
+      for (let c of s) {
+        encontreMaiuscula = encontreMaiuscula || MAIUSCULA.has(c)
+        encontreMinuscula = encontreMinuscula || MINUSCULA.has(c)
+        encontreNumero = encontreNumero || isNumber(c)
+        if (encontreMaiuscula && encontreMinuscula && encontreNumero) return 1
+      }
+    
+      return 0
+    }
+
+    function Senha() {
+      let id = document.getElementById("senha").value;
+      let passwd = validaSenha(id)
+      if (passwd == 0){
+        passwd = 0
+        document.getElementById("input").value = 0;
+        console.log(passwd)
+      } else {
+        passwd = 1
+        document.getElementById("input").value = 1;
+        console.log(passwd)
+      }
+      return passwd
+    }
+    </script>
+
 </body>
 </html>

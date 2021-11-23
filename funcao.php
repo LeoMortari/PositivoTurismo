@@ -10,7 +10,8 @@ function ValidaIdade ($aniversario) {
 
 function ValidaIndex() 
 {
-    $cpftest = str_split($_POST['cpf']);
+    $cpf = $_POST['cpf'];
+    $cpftest = str_split($cpf);
     $countCpf = count($cpftest);
 
     $telefone = str_split($_POST['telefone']);
@@ -30,12 +31,12 @@ function ValidaIndex()
         $erros[] = "<li style='color:red'> O CPF não pode conter caracteres alfabeticos</li>";
     } else {
         $cepef = ValidaCpf($cpf);
-        if($cepef = 0){
+        if($cepef == 0){
             if ($countCpf != 11)
             {
      $erros[] = "<li style='color:red'> Digite um CPF válido</li>";
             }
-    } else if ($cepef = 1) {
+    } else if ($cepef == 1) {
         $erros[] = "<li style='color:red'>Essa pessoa já possui uma conta</li>"; 
     }
 }
@@ -48,12 +49,20 @@ function ValidaIndex()
     // $erros[] = "<li style='color:red'>$countTel</li>"; 
         $erros[] = "<li style='color:red'> Digite um telefone válido</li>";  
     } 
-    if ($countPasswd < 8) {
-        $erros[] = "<li style='color:red'> Digite uma senha com no minimo 8 caracteres</li>";  
-    }
-    if ($countPasswd > 16)
-    {
-        $erros[] = "<li style='color:red'>A senha deve possuir no máximo 16 caracteres</li>";
+    echo var_dump($_POST);
+    if (isset($_POST['input'])) {
+        $senha = intval($_POST['input']);
+        if ($senha == 0)
+        {
+            if ($countPasswd < 8) {
+                $erros[] = "<li style='color:red'>Você deve digitar uma senha que contenha pelo menos: 1 Maiusculo, 1 minusculo e 1 número com no minimo 8 caracteres</li>";  
+            }
+            else if ($countPasswd > 16)
+            {
+                $erros[] = "<li style='color:red'>Você deve digitar uma senha que contenha pelo menos: 1 Maiusculo, 1 minusculo e 1 número com no máximo 16 caracteres</li>";
+            } else {
+            $erros[] = "<li style='color:red'>Você deve digitar uma senha que contenha pelo menos: 1 Maiusculo, 1 minusculo e 1 número</li>";
+        }}
     }
       $_SESSION['erro'] = $erros;
 }
@@ -67,7 +76,13 @@ function Usuario($nome)
 }
 
 function ValidaCpf ($cpf) {
-    $sql = "SELECT cpf FROM cliente WHERE cpf = '$cpf'";
+    $servername = "localhost";
+$username = "root";
+$senha = "";
+$dbname = "projeto";
+
+$connect = mysqli_connect($servername, $username, $senha, $dbname);
+    $sql = "SELECT nome FROM cliente WHERE cpf = '$cpf'";
     $query = mysqli_query($connect, $sql);
     if (mysqli_num_rows($query) > 0) {
         return 1;
