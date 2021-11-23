@@ -30,7 +30,8 @@ function ValidaIndex()
     if (filter_var($_POST['nome'], FILTER_SANITIZE_NUMBER_INT) or filter_var($_POST['nome'], FILTER_SANITIZE_NUMBER_FLOAT)) {
         $erros[] = "<li style='color:red'> O nome não pode conter caracteres númericos</li>";
     }
-    if (preg_match('/[A-Za-z]/', $_POST['cpf'])) {
+    $cpfInt = intval($_POST['cpf']);
+    if (is_null($cpfInt)) {
         $erros[] = "<li style='color:red'> O CPF não pode conter caracteres alfabeticos</li>";
     } else {
         $cepef = ValidaCpf($cpf);
@@ -45,6 +46,7 @@ function ValidaIndex()
         } else if ($cepef == 1) {
             $erros[] = "<li style='color:red'>Essa pessoa já possui uma conta</li>";
         }
+
         if (!strpos($_POST['email'], "@") or !strpos($_POST['email'], ".com")) {
             $erros[] = "<li style='color:red'> Digite um e-mail válido</li>";
         }
