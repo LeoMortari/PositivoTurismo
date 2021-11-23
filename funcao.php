@@ -23,8 +23,6 @@ function ValidaIndex()
     $senha = str_split($_POST['senha']);
     $countPasswd = count($senha);
 
-    $numeros = filter_var($_POST['nome'], FILTER_SANITIZE_NUMBER_INT);
-
     $aniversario = strval($_POST['idade']);
     // Inicio do escopo de validação do form da index 
     if (filter_var($_POST['nome'], FILTER_SANITIZE_NUMBER_INT) or filter_var($_POST['nome'], FILTER_SANITIZE_NUMBER_FLOAT)) {
