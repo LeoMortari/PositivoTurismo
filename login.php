@@ -134,7 +134,7 @@ if (isset($_POST['btn-entrar'])) {
             </div>
           </div>
         <?php } ?>
-        <a href="redefinir_senha.php" class="btn-small light-blue darken-2" style="margin-top: 10px;">Resetar senha</a>
+        <a href="passwd/redefinir_senha.php" class="btn-small light-blue darken-2" style="margin-top: 10px;">Resetar senha</a>
       </form>
     </div>
   </section>
