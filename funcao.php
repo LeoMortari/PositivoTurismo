@@ -1,4 +1,6 @@
 <?php
+require_once 'C:/xampp/htdocs/PositivoTurismo/db_connect.php';
+
 function ValidaIdade ($aniversario) {
     $anoAtual = intval(date("Y"));
     $dataBD = explode('-', $aniversario);
@@ -7,6 +9,7 @@ function ValidaIdade ($aniversario) {
     echo $idade;
     return $idade;
 }
+
 
 function ValidaIndex() 
 {
@@ -19,6 +22,7 @@ function ValidaIndex()
 
     $senha = str_split($_POST['senha']);
     $countPasswd = count($senha);
+
 
     $aniversario = strval($_POST['idade']);
     // Inicio do escopo de validação do form da index 
@@ -34,19 +38,18 @@ function ValidaIndex()
         if($cepef == 0){
             if ($countCpf != 11)
             {
-     $erros[] = "<li style='color:red'> Digite um CPF válido</li>";
+                $erros[] = "<li style='color:red'> Digite um CPF válido</li>";
             }
     } else if ($cepef == 1) {
         $erros[] = "<li style='color:red'>Essa pessoa já possui uma conta</li>"; 
     }
-}
-    if (!strpos($_POST['email'],"@"))
+    if (!strpos($_POST['email'],"@") or !strpos($_POST['email'], ".com"))
     {
         $erros[] = "<li style='color:red'> Digite um e-mail válido</li>";  
     } 
+
     if (preg_match('/[A-Za-z]/', $_POST['telefone']) or $countTel != 11)
-    {
-    // $erros[] = "<li style='color:red'>$countTel</li>"; 
+    { 
         $erros[] = "<li style='color:red'> Digite um telefone válido</li>";  
     } 
     echo var_dump($_POST);
@@ -62,11 +65,18 @@ function ValidaIndex()
                 $erros[] = "<li style='color:red'>Você deve digitar uma senha que contenha pelo menos: 1 Maiusculo, 1 minusculo e 1 número com no máximo 16 caracteres</li>";
             } else {
             $erros[] = "<li style='color:red'>Você deve digitar uma senha que contenha pelo menos: 1 Maiusculo, 1 minusculo e 1 número</li>";
-        }}
+        }
+    }
     }
       $_SESSION['erro'] = $erros;
-}
 
+      if (count($_SESSION['erro']) == 0){
+          return 0;
+      } else {
+          return 1;
+      }
+    }
+}
 function Usuario($nome)
 {
     $usuario = explode(" ", $nome);
@@ -85,8 +95,10 @@ $connect = mysqli_connect($servername, $username, $senha, $dbname);
     $sql = "SELECT nome FROM cliente WHERE cpf = '$cpf'";
     $query = mysqli_query($connect, $sql);
     if (mysqli_num_rows($query) > 0) {
+        echo '1';
         return 1;
     } else {
+        echo '0';
         return 0;
     }
 }

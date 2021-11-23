@@ -1,7 +1,6 @@
   <?php
   include_once 'home/includes/header.php';
   session_start();
-  $erros = array();
   ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -213,6 +212,5 @@
       return passwd
     }
     </script>
-
 </body>
 </html>

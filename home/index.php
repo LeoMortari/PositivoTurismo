@@ -36,19 +36,6 @@ return $dataBanco;
           <button type="submit" class="btn blue waves-effect waves-light" >Buscar</button>
           </div>
         </form>
-            <!-- <thead>
-                <tr>
-                    <th>Nome:</th>
-                    <th>CPF:</th>
-                    <th>Email:</th>
-                    <th>UF:</th>
-                    <th>Data de Nascimento:</th>
-                    <th>Logradouro:</th>
-                    <th>Passaporte:</th>
-                    <th>usuario:</th>
-                </tr>
-            </thead> -->
-            <tbody>
                 <?php
                 if (isset($_GET['search']) && $_GET['search'] != null ){
                 $busca = mysqli_escape_string($connect, $_GET['search']);
