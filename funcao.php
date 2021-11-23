@@ -49,6 +49,14 @@ function ValidaIndex()
             $erros[] = "<li style='color:red'> Digite um e-mail válido</li>";
         }
 
+        if (isset($_POST['idade'])) {
+            $aniversario = $_POST['idade'];
+            $valida = ValidaIdade($aniversario);
+            if ($valida < 18) {
+                $erros[] = "<li style='color:red'>Você precisa ter mais de 18 anos para se cadastrar</li>";
+            }
+        }
+
         if (preg_match('/[A-Za-z]/', $_POST['telefone']) or $countTel != 11 && $countTel != 10) {
             $erros[] = "<li style='color:red'> Digite um telefone válido</li>";
         }
