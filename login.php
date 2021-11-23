@@ -114,62 +114,62 @@ if (isset($_POST['btn-entrar'])) {
         <?php
         if (!empty($erros)) {
         ?>
-        <script>
-    document.addEventListener('DOMContentLoaded', function () {
-    var Modalelem = document.querySelector('#modal1');
-    var instance = M.Modal.init(Modalelem);
-    instance.open();
-    });
-      </script>
-    <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4>ATENÇÃO!</h4>
-      <p><?php
-      foreach ($erros as $erro) {
-        echo $erro;
-      } 
-      ?></p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn">Entendi</a>
-    </div>
-  </div>
-  <?php }?>
+          <script>
+            document.addEventListener('DOMContentLoaded', function() {
+              var Modalelem = document.querySelector('#modal1');
+              var instance = M.Modal.init(Modalelem);
+              instance.open();
+            });
+          </script>
+          <div id="modal1" class="modal">
+            <div class="modal-content">
+              <h4>ATENÇÃO!</h4>
+              <p><?php
+                  foreach ($erros as $erro) {
+                    echo $erro;
+                  }
+                  ?></p>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-close waves-effect waves-green btn">Entendi</a>
+            </div>
+          </div>
+        <?php } ?>
       </form>
     </div>
   </section>
   <?php
   if (isset($_SESSION['modal-login'])) {
   ?>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-    var Modalelem = document.querySelector('#modal1');
-    var instance = M.Modal.init(Modalelem);
-    instance.open();
-    });
-</script>
-<div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4>Cadastro Concluido!</h4>
-      <p>Seu usuário é: <b><?php echo $_SESSION['usuario']?></b><br>
-        Você pode utilizar seu email "<b><?php echo $_SESSION['email']?></b>" ou seu usuário para realizar login na plataforma.
-      </p>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var Modalelem = document.querySelector('#modal1');
+        var instance = M.Modal.init(Modalelem);
+        instance.open();
+      });
+    </script>
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4>Cadastro Concluido!</h4>
+        <p>Seu usuário é: <b><?php echo $_SESSION['usuario'] ?></b><br>
+          Você pode utilizar seu email "<b><?php echo $_SESSION['email'] ?></b>" ou seu usuário para realizar login na plataforma.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn">Entendi</a>
+      </div>
     </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn">Entendi</a>
-    </div>
-  </div>
-<?php 
+  <?php
   }
-?>
+  ?>
   <footer>
     <div class="flex-container interna">
       <p>&copy; 2021 UNIVERSIDADE POSITIVO</p>
     </div>
     <?php
-//Footer
-include_once 'home/includes/footer.php';
-?>
+    //Footer
+    include_once 'home/includes/footer.php';
+    ?>
   </footer>
 </body>
 
