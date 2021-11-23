@@ -24,10 +24,11 @@ function ValidaIndex()
     $senha = str_split($_POST['senha']);
     $countPasswd = count($senha);
 
+    $numeros = filter_var($_POST['nome'], FILTER_SANITIZE_NUMBER_INT);
 
     $aniversario = strval($_POST['idade']);
     // Inicio do escopo de validação do form da index 
-    if (preg_match('/[0-9]/', $_POST['nome'])) {
+    if (filter_var($_POST['nome'], FILTER_SANITIZE_NUMBER_INT) or filter_var($_POST['nome'], FILTER_SANITIZE_NUMBER_FLOAT)) {
         $erros[] = "<li style='color:red'> O nome não pode conter caracteres númericos</li>";
     }
     if (preg_match('/[A-Za-z]/', $_POST['cpf'])) {
@@ -36,7 +37,11 @@ function ValidaIndex()
         $cepef = ValidaCpf($cpf);
         if ($cepef == 0) {
             if ($countCpf != 11) {
-                $erros[] = "<li style='color:red'> Digite um CPF válido</li>";
+                if ($countCpf == 14) {
+                    $erros[] = "<li style='color:red'>Não se deve usar um CPNJ para cadastrar</li>";
+                } else {
+                    $erros[] = "<li style='color:red'> Digite um CPF válido</li>";
+                }
             }
         } else if ($cepef == 1) {
             $erros[] = "<li style='color:red'>Essa pessoa já possui uma conta</li>";

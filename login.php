@@ -102,12 +102,12 @@ if (isset($_POST['btn-entrar'])) {
           <h1>Entrar</h1>
           <img src="images/bagagem-de-viagem.svg">
         </div>
-        <label for="email">Usuario ou E-mail</label>
+        <label for="login">Usuario ou E-mail</label>
         <input type="text" name="login" value="">
         <label for="senha">Senha</label>
         <input type="password" name="senha">
         <div class="box-botao">
-          <button name="btn-entrar" class="btn-small blue darken-3" type="submit">
+          <button name="btn-entrar" class="btn-small blue darken-4" type="submit">
             <span>Entrar</span>
           </button>
         </div>
