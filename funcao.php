@@ -48,7 +48,7 @@ function ValidaIndex()
         $erros[] = "<li style='color:red'> Digite um e-mail válido</li>";  
     } 
 
-    if (preg_match('/[A-Za-z]/', $_POST['telefone']) or $countTel != 11)
+    if (preg_match('/[A-Za-z]/', $_POST['telefone']) or $countTel != 11 && $countTel != 10)
     { 
         $erros[] = "<li style='color:red'> Digite um telefone válido</li>";  
     } 
