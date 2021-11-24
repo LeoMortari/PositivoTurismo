@@ -86,8 +86,8 @@ function InverteData($data)
                                             <li><b>Data de Nascimento: </b><?php echo $dados['dataNascimento']; ?></li>
                                             <li><b>Logradouro: </b><?php echo $dados['logradouro']; ?></li>
                                             <li><b>Passaporte: </b><?php echo $dados['passaporte']; ?></li>
-                                            <li><b>usuario: </b><?php echo $dados['usuario']; ?></li>
-                                            <li><b>bloqueio: </b><?php echo $dados['bloqueio']; ?></li>
+                                            <li><b>Usuário: </b><?php echo $dados['usuario']; ?></li>
+                                            <li><b>Bloqueio: </b><?php echo $dados['bloqueio']; ?></li>
 
                                     </div>
                                 </li>
@@ -117,8 +117,8 @@ function InverteData($data)
                                             <li><b>Data de Nascimento: </b><?php echo $dados['dataNascimento']; ?></li>
                                             <li><b>Logradouro: </b><?php echo $dados['logradouro']; ?></li>
                                             <li><b>Passaporte: </b><?php echo $dados['passaporte']; ?></li>
-                                            <li><b>usuario: </b><?php echo $dados['usuario']; ?></li>
-                                            <li><b>bloqueio: </b><?php echo $dados['bloqueio']; ?></li>
+                                            <li><b>Usuário: </b><?php echo $dados['usuario']; ?></li>
+                                            <li><b>Bloqueio: </b><?php echo $dados['bloqueio']; ?></li>
                                             <br>
                                             <a href="editar.php?id=<?php echo $dados['id']; ?>" class="btn orange">Editar</a>
                                             <a href="#modal<?php echo $dados['id']; ?>" class="btn red modal-trigger">Excluir</a>
@@ -164,7 +164,7 @@ function InverteData($data)
                                             <ul>
                                                 <li><b>CPF: </b><?php echo $dados['cpf']; ?></li>
                                                 <li><b>Email: </b> <?php echo $dados['email']; ?></li>
-                                                <li><b>usuario: </b><?php echo $dados['usuario']; ?></li>
+                                                <li><b>Usuário: </b><?php echo $dados['usuario']; ?></li>
                                         </div>
                                     </li>
                                 </ul>
@@ -196,8 +196,8 @@ function InverteData($data)
                                                                                 ?></li>
                                                 <li><b>Logradouro: </b><?php echo $dados['logradouro']; ?></li>
                                                 <li><b>Passaporte: </b><?php echo $dados['passaporte']; ?></li>
-                                                <li><b>usuario: </b><?php echo $dados['usuario']; ?></li>
-                                                <li><b>bloqueio: </b><?php echo $dados['bloqueio']; ?></li>
+                                                <li><b>Usuário: </b><?php echo $dados['usuario']; ?></li>
+                                                <li><b>Bloqueio: </b><?php echo $dados['bloqueio']; ?></li>
                                                 <br>
                                                 <a href="editar.php?id=<?php echo $dados['id']; ?>" class="btn orange">Editar</a>
                                                 <a href="#modal<?php echo $dados['id']; ?>" class="btn red modal-trigger">Excluir</a>
