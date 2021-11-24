@@ -72,14 +72,22 @@ function InverteData($data)
                                     </div>
                                     <div class="collapsible-body">
                                         <ul>
+                                            <?php
+                                            if ($dados['bloqueio'] == NULL) {
+                                                $dados['bloqueio'] = "Sem bloqueio";
+                                            }
+                                            if ($dados['passaporte'] == NULL) {
+                                                $dados['passaporte'] = "Não possui";
+                                            }
+                                            ?>
                                             <li><b>CPF: </b><?php echo $dados['cpf']; ?></li>
                                             <li><b>Email: </b> <?php echo $dados['email']; ?></li>
                                             <li><b>UF: </b><?php echo $dados['uf']; ?></li>
-                                            <li><b>Data de Nascimento: </b><?php
-                                                                            echo $dados['dataNascimento']; ?></li>
+                                            <li><b>Data de Nascimento: </b><?php echo $dados['dataNascimento']; ?></li>
                                             <li><b>Logradouro: </b><?php echo $dados['logradouro']; ?></li>
                                             <li><b>Passaporte: </b><?php echo $dados['passaporte']; ?></li>
                                             <li><b>usuario: </b><?php echo $dados['usuario']; ?></li>
+                                            <li><b>bloqueio: </b><?php echo $dados['bloqueio']; ?></li>
 
                                     </div>
                                 </li>
@@ -95,14 +103,22 @@ function InverteData($data)
                                     </div>
                                     <div class="collapsible-body">
                                         <ul>
+                                            <?php
+                                            if ($dados['bloqueio'] == NULL) {
+                                                $dados['bloqueio'] = "Sem bloqueio";
+                                            }
+                                            if ($dados['passaporte'] == NULL) {
+                                                $dados['passaporte'] = "Não possui";
+                                            }
+                                            ?>
                                             <li><b>CPF: </b><?php echo $dados['cpf']; ?></li>
                                             <li><b>Email: </b> <?php echo $dados['email']; ?></li>
                                             <li><b>UF: </b><?php echo $dados['uf']; ?></li>
-                                            <li><b>Data de Nascimento: </b><?php
-                                                                            echo $dados['dataNascimento']; ?></li>
+                                            <li><b>Data de Nascimento: </b><?php echo $dados['dataNascimento']; ?></li>
                                             <li><b>Logradouro: </b><?php echo $dados['logradouro']; ?></li>
                                             <li><b>Passaporte: </b><?php echo $dados['passaporte']; ?></li>
                                             <li><b>usuario: </b><?php echo $dados['usuario']; ?></li>
+                                            <li><b>bloqueio: </b><?php echo $dados['bloqueio']; ?></li>
                                             <br>
                                             <a href="editar.php?id=<?php echo $dados['id']; ?>" class="btn orange">Editar</a>
                                             <a href="#modal<?php echo $dados['id']; ?>" class="btn red modal-trigger">Excluir</a>
@@ -135,9 +151,7 @@ function InverteData($data)
                 if (!isset($_GET['search']) or $_GET['search'] == null) {
                     $sql = "SELECT * FROM cliente ORDER BY nome asc";
                     $resultado = mysqli_query($connect, $sql);
-
                     if (mysqli_num_rows($resultado) > 0) {
-
                         while ($dados = mysqli_fetch_array($resultado)) {
                             if ($dados['usuario'] == 'admin') {
                             ?>
@@ -150,15 +164,7 @@ function InverteData($data)
                                             <ul>
                                                 <li><b>CPF: </b><?php echo $dados['cpf']; ?></li>
                                                 <li><b>Email: </b> <?php echo $dados['email']; ?></li>
-                                                <li><b>UF: </b><?php echo $dados['uf']; ?></li>
-                                                <li><b>Data de Nascimento: </b><?php
-                                                                                $data = $dados['dataNascimento'];
-                                                                                echo InverteData($data)
-                                                                                ?></li>
-                                                <li><b>Logradouro: </b><?php echo $dados['logradouro']; ?></li>
-                                                <li><b>Passaporte: </b><?php echo $dados['passaporte']; ?></li>
                                                 <li><b>usuario: </b><?php echo $dados['usuario']; ?></li>
-
                                         </div>
                                     </li>
                                 </ul>
@@ -173,6 +179,14 @@ function InverteData($data)
                                         </div>
                                         <div class="collapsible-body">
                                             <ul>
+                                                <?php
+                                                if ($dados['bloqueio'] == NULL) {
+                                                    $dados['bloqueio'] = "Sem bloqueio";
+                                                }
+                                                if ($dados['passaporte'] == NULL) {
+                                                    $dados['passaporte'] = "Não possui";
+                                                }
+                                                ?>
                                                 <li><b>CPF: </b><?php echo $dados['cpf']; ?></li>
                                                 <li><b>Email: </b> <?php echo $dados['email']; ?></li>
                                                 <li><b>UF: </b><?php echo $dados['uf']; ?></li>
@@ -183,6 +197,7 @@ function InverteData($data)
                                                 <li><b>Logradouro: </b><?php echo $dados['logradouro']; ?></li>
                                                 <li><b>Passaporte: </b><?php echo $dados['passaporte']; ?></li>
                                                 <li><b>usuario: </b><?php echo $dados['usuario']; ?></li>
+                                                <li><b>bloqueio: </b><?php echo $dados['bloqueio']; ?></li>
                                                 <br>
                                                 <a href="editar.php?id=<?php echo $dados['id']; ?>" class="btn orange">Editar</a>
                                                 <a href="#modal<?php echo $dados['id']; ?>" class="btn red modal-trigger">Excluir</a>
@@ -203,60 +218,6 @@ function InverteData($data)
                                 </div>
                                 </li>
                                 </ul>
-                                <!-- 
-                            <span class="badge">
-                            <?php echo $dados['email']; ?>
-                            </span>
-                            <span class="badge">
-                            <?php echo $dados['uf']; ?>
-                            </span>
-                            <span class="badge">
-                            <?php
-                                $data = $dados['dataNascimento'];
-                                echo InverteData($data)
-                            ?>
-                            </span>
-                            <span class="badge">
-                            <?php echo $dados['logradouro']; ?>
-                            </span>
-                            <span class="badge">
-                            <?php echo $dados['passaporte']; ?>
-                            </span>
-                            <span class="badge">
-                            <?php echo $dados['usuario']; ?>
-                            </span>
-                        
-                        
-                        
-                        <tr>
-                            <td><?php echo $dados['nome']; ?></td>
-                            <td><?php echo $dados['cpf']; ?></td>
-                            <td><?php echo $dados['email']; ?></td>
-                            <td><?php echo $dados['uf']; ?></td>
-                            <td><?php
-                                $data = $dados['dataNascimento'];
-                                echo InverteData($data)
-                                ?></td>
-                            <td><?php echo $dados['logradouro']; ?></td>
-                            <td><?php echo $dados['passaporte']; ?></td>
-                            <td><?php echo $dados['usuario']; ?></td>
-                            <td><a href="editar.php?id=<?php echo $dados['id']; ?>" class="btn-floating orange"><i class="material-icons">edit</i></a></td>
-                            <td><a href="#modal<?php echo $dados['id']; ?>" class="btn-floating red modal-trigger"><i class="material-icons">delete</i></a></td>
-
-                            <div id="modal<?php echo $dados['id']; ?>" class="modal">
-                                <div class="modal-content">
-                                    <h4>Tem certeza?</h4>
-                                    <p>Deseja excluir <?php echo $dados['nome']; ?>? </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <form action="php_action/delete.php" method="POST">
-                                        <input type="hidden" name="id" value="<?php echo $dados['id']; ?>">
-                                        <button type="submit" name="btn-deletar" class="btn red">Sim, quero deletar</button>
-                                        <a href="#!" class="modal-close btn-flat">Cancelar</a>
-                                    </form>
-                                </div>
-                            </div>
-                        </tr> -->
                         <?php }
                         }
                     } else { ?>

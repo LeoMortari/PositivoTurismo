@@ -3,7 +3,6 @@
 include_once 'home/includes/header.php';
 require_once 'db_connect.php';
 session_start();
-
 if (isset($_POST['btn-entrar'])) {
   $erros = array();
   $login = mysqli_escape_string($connect, $_POST['login']);
@@ -25,6 +24,7 @@ if (isset($_POST['btn-entrar'])) {
           $_SESSION['id_usuario'] = $dados['id'];
           header('Location: home.php');
         } else {
+          array_push($_SESSION['login-fail'], "tentativa");
           $erros[] = "<li>Usuário e Senha não conferem</li>";
         }
       } else {
@@ -59,6 +59,7 @@ if (isset($_POST['btn-entrar'])) {
           $_SESSION['id_usuario'] = $dados['id'];
           header('Location: home.php');
         } else {
+          $logout[] = "tentativa";
           $erros[] = "<li>Usuário e Senha não conferem</li>";
         }
       } else {
