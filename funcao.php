@@ -7,7 +7,6 @@ function ValidaIdade($aniversario)
     $dataBD = explode('-', $aniversario);
     $ano = intval($dataBD[0]);
     $idade = $anoAtual - $ano;
-    echo $idade;
     return $idade;
 }
 
@@ -62,13 +61,17 @@ function ValidaIndex()
         }
         if (isset($_POST['input'])) {
             $senha = intval($_POST['input']);
-            if ($senha == 0) {
-                if ($countPasswd < 8) {
-                    $erros[] = "<li style='color:red'>Você deve digitar uma senha que contenha pelo menos: 1 Maiusculo, 1 minusculo e 1 número com no minimo 8 caracteres</li>";
-                } else if ($countPasswd > 16) {
-                    $erros[] = "<li style='color:red'>Você deve digitar uma senha que contenha pelo menos: 1 Maiusculo, 1 minusculo e 1 número com no máximo 16 caracteres</li>";
-                } else {
-                    $erros[] = "<li style='color:red'>Você deve digitar uma senha que contenha pelo menos: 1 Maiusculo, 1 minusculo e 1 número</li>";
+            if (ValidaSenha($_POST['senha'], $_POST['nome']) == 0) {
+                $erros[] = "<li style='color:red'>Sua senha não pode conter partes do seu nome</li>";
+            } else {
+                if ($senha == 0) {
+                    if ($countPasswd < 8) {
+                        $erros[] = "<li style='color:red'>Você deve digitar uma senha que contenha pelo menos: 1 Maiusculo, 1 minusculo e 1 número com no minimo 8 caracteres</li>";
+                    } else if ($countPasswd > 16) {
+                        $erros[] = "<li style='color:red'>Você deve digitar uma senha que contenha pelo menos: 1 Maiusculo, 1 minusculo e 1 número com no máximo 16 caracteres</li>";
+                    } else {
+                        $erros[] = "<li style='color:red'>Você deve digitar uma senha que contenha pelo menos: 1 Maiusculo, 1 minusculo e 1 número</li>";
+                    }
                 }
             }
         }
@@ -108,7 +111,6 @@ function ValidaCpf($cpf)
 
 function GravaSenha($connect, $senhaAtual, $cpf)
 {
-    $senhaAtual = md5($senhaAtual);
     $senha = mysqli_query($connect, "SELECT senha FROM cliente WHERE cpf = '$cpf'");
     while ($dados = mysqli_fetch_assoc($senha)) {
         foreach ($dados as $field => $value) {
@@ -131,6 +133,7 @@ function GravaSenha($connect, $senhaAtual, $cpf)
         }
         $passwd2 = $value;
     }
+
     $senha3 = mysqli_query($connect, "SELECT senha2 FROM cliente WHERE cpf = '$cpf'");
     while ($dados = mysqli_fetch_assoc($senha3)) {
         foreach ($dados as $field => $value) {
@@ -143,11 +146,24 @@ function GravaSenha($connect, $senhaAtual, $cpf)
     $mudaSenha1 = mysqli_query($connect, "UPDATE cliente SET senha1 = '$passwd' WHERE cpf = '$cpf'");
     $mudaSenha2 = mysqli_query($connect, "UPDATE cliente SET senha2 = '$passwd1' WHERE cpf = '$cpf'");
     $mudaSenha3 = mysqli_query($connect, "UPDATE cliente SET senha3 = '$passwd2' WHERE cpf = '$cpf'");
+}
 
-    // if ($senhaAtual == $passwd or $senhaAtual == $passwd1) {
-    //     $_SESSION['passwd-invalid'] = true;
-    //     return 0;
-    // } else {
-    //     return 1;
-    // }
+function ValidaSenha($senha, $nome)
+{
+    $passwd = str_split($senha);
+    $array = count($passwd) - 1;
+    $name = str_split($nome);
+    $error = array();
+    $i = 0;
+    while ($i <= $array) {
+        if ($passwd[$i] == $name[$i]) {
+            array_push($error, "erro");
+        }
+        $i++;
+    }
+    if (count($error) >= 3) {
+        return 0;
+    } else {
+        return 1;
+    }
 }
