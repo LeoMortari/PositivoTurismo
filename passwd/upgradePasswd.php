@@ -32,9 +32,13 @@ if (isset($_POST['btn-passwd'])) {
             $_SESSION['admin-passwd'] = true;
             header('location: redefinir_senha.php');
         } else {
-            echo GravaSenha($connect, $passwd, $cpf);
-            $_SESSION['sucess-passwd'] = true;
-            header('location: redefinir_senha.php');
+            if (GravaSenha($connect, $passwd, $cpf) == 1) {
+                $_SESSION['sucess-passwd'] = true;
+                header('location: redefinir_senha.php');
+            } else {
+                $_SESSION['repetir-passwd'] = true;
+                header('location: redefinir_senha.php');
+            }
         }
     }
 }

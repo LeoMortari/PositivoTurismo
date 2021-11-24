@@ -140,6 +140,29 @@ session_start();
         <?php
         }
         ?>
+        <?php
+        if (isset($_SESSION['repetir-passwd'])) {
+        ?>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var Modalelem = document.querySelector('#modal1');
+                    var instance = M.Modal.init(Modalelem);
+                    instance.open();
+                });
+            </script>
+            <div id="modal1" class="modal bottom-sheet">
+                <div class="modal-content">
+                    <h4 style="color:red">Erro:</h4>
+                    <p> Esta senha já foi usada anteriormente.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#form" class="modal-close waves-effect waves-green btn">Entendi</a>
+                </div>
+            </div>
+        <?php
+        }
+        ?>
         <section>
             <div class="container-principal">
                 <div class="content-form">
@@ -147,9 +170,9 @@ session_start();
                         <h3 style="text-align:center;">Redefinir Senha</h3>
                         <p style="text-align:center;">Para redefinir sua senha, você deve informar os seguintes dados:</p><br>
                         <label>CPF:</label>
-                        <input name="cpf" class="campo_cpf" type="text"><br>
+                        <input name="cpf" class="campo_cpf" type="text" required><br>
                         <label>Nova senha:</label>
-                        <input name="senha" id="senha" class="campo_senha" type="password"><br>
+                        <input name="senha" id="senha" class="campo_senha" required type="password"><br>
                         <input type="hidden" id="input" name="input">
                         <button name="btn-passwd" id="btn_submit" type="submit" class="btn blue darken-4">Cadastrar</button>
                         <a id="btn_submit" href="../login.php" class="btn blue darken-2">Login</a>

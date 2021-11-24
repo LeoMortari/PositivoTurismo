@@ -141,11 +141,15 @@ function GravaSenha($connect, $senhaAtual, $cpf)
         }
         $passwd2 = $value;
     }
-
-    $mudaSenha = mysqli_query($connect, "UPDATE cliente SET senha = '$senhaAtual' WHERE cpf = '$cpf'");
-    $mudaSenha1 = mysqli_query($connect, "UPDATE cliente SET senha1 = '$passwd' WHERE cpf = '$cpf'");
-    $mudaSenha2 = mysqli_query($connect, "UPDATE cliente SET senha2 = '$passwd1' WHERE cpf = '$cpf'");
-    $mudaSenha3 = mysqli_query($connect, "UPDATE cliente SET senha3 = '$passwd2' WHERE cpf = '$cpf'");
+    if ($senhaAtual == $passwd or $senhaAtual == $passwd1 or $senhaAtual == $passwd2) {
+        return 0;
+    } else {
+        mysqli_query($connect, "UPDATE cliente SET senha = '$senhaAtual' WHERE cpf = '$cpf'");
+        mysqli_query($connect, "UPDATE cliente SET senha1 = '$passwd' WHERE cpf = '$cpf'");
+        mysqli_query($connect, "UPDATE cliente SET senha2 = '$passwd1' WHERE cpf = '$cpf'");
+        mysqli_query($connect, "UPDATE cliente SET senha3 = '$passwd2' WHERE cpf = '$cpf'");
+        return 1;
+    }
 }
 
 function ValidaSenha($senha, $nome)
