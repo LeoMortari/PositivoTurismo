@@ -2,6 +2,7 @@
 //includes
 include_once '../home/includes/header.php';
 include_once '../db_connect.php';
+include_once '../funcao.php';
 session_start();
 
 ?>
@@ -29,11 +30,63 @@ session_start();
         ?>
         <div class="flex-container menu">
             <div>
-                <h1>PositivoTurismo</h1>
+                <h1><a href="../index.php" style="text-decoration:none; color:white">PositivoTurismo</a></h1>
             </div>
         </div>
     </header>
     <div>
+        <?php
+        if (isset($_SESSION['repetido-passwd'])) {
+        ?>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var Modalelem = document.querySelector('#modal1');
+                    var instance = M.Modal.init(Modalelem);
+                    instance.open();
+                });
+            </script>
+            <div id="modal1" class="modal bottom-sheet">
+                <div class="modal-content">
+                    <h4 style="color:red">Erro:</h4>
+                    <p>Esta já é sua senha.
+                        <?php
+                        session_unset();
+                        ?>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#form" class="modal-close waves-effect waves-green btn">Entendi</a>
+                </div>
+            </div>
+        <?php
+        }
+        ?>
+        <?php
+        if (isset($_SESSION['admin-passwd'])) {
+        ?>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var Modalelem = document.querySelector('#modal1');
+                    var instance = M.Modal.init(Modalelem);
+                    instance.open();
+                });
+            </script>
+            <div id="modal1" class="modal bottom-sheet">
+                <div class="modal-content">
+                    <h4 style="color:red">Erro:</h4>
+                    <p>Não é possivel alterar esta senha
+                        <?php
+                        session_unset();
+                        ?>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#form" class="modal-close waves-effect waves-green btn">Entendi</a>
+                </div>
+            </div>
+        <?php
+        }
+        ?>
         <?php
         if (isset($_SESSION['sucess-passwd'])) {
         ?>
@@ -61,7 +114,7 @@ session_start();
         }
         ?>
         <?php
-        if (isset($_SESSION['fail-passwd'])) {
+        if (isset($_SESSION['passwd-invalid'])) {
         ?>
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
@@ -72,35 +125,10 @@ session_start();
             </script>
             <div id="modal1" class="modal bottom-sheet">
                 <div class="modal-content">
-                    <h4 style="color:red">Erro:</h4>
-                    <p> Não foi possível atualizar sua senha.
+                    <h4>Senha atualizada com sucesso!</h4>
+                    <p>
                         <?php
-                        session_unset();
-                        ?>
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <a href="#form" class="modal-close waves-effect waves-green btn">Entendi</a>
-                </div>
-            </div>
-        <?php
-        }
-        ?>
-        <?php
-        if (isset($_SESSION['repetido-passwd'])) {
-        ?>
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    var Modalelem = document.querySelector('#modal1');
-                    var instance = M.Modal.init(Modalelem);
-                    instance.open();
-                });
-            </script>
-            <div id="modal1" class="modal bottom-sheet">
-                <div class="modal-content">
-                    <h4 style="color:red">Erro:</h4>
-                    <p>Esta já é sua senha.
-                        <?php
+                        echo var_dump($_SESSION);
                         session_unset();
                         ?>
                     </p>

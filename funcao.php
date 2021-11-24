@@ -95,15 +95,59 @@ function ValidaCpf($cpf)
     $username = "root";
     $senha = "";
     $dbname = "projeto";
-
     $connect = mysqli_connect($servername, $username, $senha, $dbname);
+
     $sql = "SELECT nome FROM cliente WHERE cpf = '$cpf'";
     $query = mysqli_query($connect, $sql);
     if (mysqli_num_rows($query) > 0) {
-        echo '1';
         return 1;
     } else {
-        echo '0';
         return 0;
     }
+}
+
+function GravaSenha($connect, $senhaAtual, $cpf)
+{
+    $senhaAtual = md5($senhaAtual);
+    $senha = mysqli_query($connect, "SELECT senha FROM cliente WHERE cpf = '$cpf'");
+    while ($dados = mysqli_fetch_assoc($senha)) {
+        foreach ($dados as $field => $value) {
+            $field . ' => ' . $value;
+        }
+        $passwd = $value;
+    }
+    $senha1 = mysqli_query($connect, "SELECT senha1 FROM cliente WHERE cpf = '$cpf'");
+    while ($dados = mysqli_fetch_assoc($senha1)) {
+        foreach ($dados as $field => $value) {
+            $field . ' => ' . $value;
+        }
+        $passwd1 = $value;
+    }
+
+    $senha2 = mysqli_query($connect, "SELECT senha2 FROM cliente WHERE cpf = '$cpf'");
+    while ($dados = mysqli_fetch_assoc($senha2)) {
+        foreach ($dados as $field => $value) {
+            $field . ' => ' . $value;
+        }
+        $passwd2 = $value;
+    }
+    $senha3 = mysqli_query($connect, "SELECT senha2 FROM cliente WHERE cpf = '$cpf'");
+    while ($dados = mysqli_fetch_assoc($senha3)) {
+        foreach ($dados as $field => $value) {
+            $field . ' => ' . $value;
+        }
+        $passwd2 = $value;
+    }
+
+    $mudaSenha = mysqli_query($connect, "UPDATE cliente SET senha = '$senhaAtual' WHERE cpf = '$cpf'");
+    $mudaSenha1 = mysqli_query($connect, "UPDATE cliente SET senha1 = '$passwd' WHERE cpf = '$cpf'");
+    $mudaSenha2 = mysqli_query($connect, "UPDATE cliente SET senha2 = '$passwd1' WHERE cpf = '$cpf'");
+    $mudaSenha3 = mysqli_query($connect, "UPDATE cliente SET senha3 = '$passwd2' WHERE cpf = '$cpf'");
+
+    // if ($senhaAtual == $passwd or $senhaAtual == $passwd1) {
+    //     $_SESSION['passwd-invalid'] = true;
+    //     return 0;
+    // } else {
+    //     return 1;
+    // }
 }
